@@ -4,10 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.data.annotation.Id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 
 @Slf4j
 @Entity
