@@ -1,0 +1,91 @@
+package avd.proftaak.rentmycar.controllers;
+
+import avd.proftaak.rentmycar.domain.Car;
+import avd.proftaak.rentmycar.repository.CarRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/Cars")
+public class CarController {
+    private final CarRepository carRepository;
+
+    @Autowired
+    public CarController(CarRepository carRepository) {
+        this.carRepository = carRepository;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Car>> getAll(@RequestParam(required = false) String model){
+        List<Car> found = new ArrayList<>();
+        if (model == null){
+            found.addAll(carRepository.findAll());
+        }else {
+            found.addAll(carRepository.findCarByModelIgnoreCase(model));
+        }
+
+        if (found.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(found);
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Car> getById(@PathVariable Long id){
+        return carRepository.findById(id);
+    }
+
+    @GetMapping("/{brand}")
+    public ResponseEntity<List<Car>> getByBrand(@PathVariable String brand){
+        List<Car> found = new ArrayList<>();
+
+        if (brand == null){
+            found.addAll(carRepository.findAll());
+        }else {
+            found.addAll(carRepository.findCarByBrand(brand));
+        }
+
+        if (found.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(found);
+    }
+
+    @GetMapping("/{kilometers}")
+    public ResponseEntity<List<Car>> getByKilometers(@PathVariable Integer kilometers){
+        List<Car> found = new ArrayList<>();
+
+        if (kilometers == null){
+            found.addAll(carRepository.findAll());
+        }else {
+            found.addAll(carRepository.findCarByKilometersContaining(kilometers));
+        }
+
+        if (found.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(found);
+    }
+
+
+
+    @PostMapping
+    public ResponseEntity<Car> create(@RequestBody Car newCar){
+        try{
+            Car car = carRepository.save(newCar);
+            return new ResponseEntity<>(car, HttpStatus.CREATED);
+        }catch (IllegalArgumentException e){
+            return ResponseEntity.badRequest().build();
+        }
+    }
+}

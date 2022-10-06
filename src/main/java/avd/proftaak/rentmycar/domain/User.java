@@ -1,5 +1,8 @@
 package avd.proftaak.rentmycar.domain;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.data.annotation.Id;
@@ -7,6 +10,9 @@ import org.springframework.data.annotation.Id;
 import javax.persistence.*;
 
 @Slf4j
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 public class User {
     @Id
@@ -19,5 +25,4 @@ public class User {
     private String email;
     private String password;
     private Integer phonenumber;
-    private boolean isVerhuurder;
 }
