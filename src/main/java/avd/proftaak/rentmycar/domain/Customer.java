@@ -1,5 +1,6 @@
 package avd.proftaak.rentmycar.domain;
 
+import avd.proftaak.rentmycar.UserType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,8 @@ import java.util.Set;
 @Setter
 public class Customer extends User
 {
+    public static final UserType TYPE = UserType.Customer;
+
     @OneToMany
     private Set<CarOrder> orders;
 

@@ -1,5 +1,6 @@
 package avd.proftaak.rentmycar.domain;
 
+import avd.proftaak.rentmycar.UserType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +17,8 @@ import static javax.persistence.CascadeType.ALL;
 @Setter
 public class RentalService extends User
 {
+    public static final UserType TYPE = UserType.RentalService;
+
     @OneToMany(cascade=ALL, mappedBy="costId")
     private Set<Cost> costs;
 

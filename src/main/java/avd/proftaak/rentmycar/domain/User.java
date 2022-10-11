@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
+@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.INTEGER)
 @NoArgsConstructor
 @Getter
 @Setter
@@ -23,11 +24,6 @@ public abstract class User
     private String password;
     private Integer phonenumber;
     private UserType type;
-
-    public User(UserType type)
-    {
-        this.type = type;
-    }
 
     public abstract String GetDescription();
 }
