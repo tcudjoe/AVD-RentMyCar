@@ -1,5 +1,7 @@
 package avd.proftaak.rentmycar.controllers;
 
+import lombok.extern.slf4j.Slf4j;
+
 import avd.proftaak.rentmycar.domain.Car;
 import avd.proftaak.rentmycar.repository.CarRepository;
 
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @RestController
 @RequestMapping("/Cars")
 public class CarController {
@@ -77,14 +80,13 @@ public class CarController {
         return ResponseEntity.ok(found);
     }
 
-
-
     @PostMapping
     public ResponseEntity<Car> create(@RequestBody Car newCar){
         try{
             Car car = carRepository.save(newCar);
             return new ResponseEntity<>(car, HttpStatus.CREATED);
         }catch (IllegalArgumentException e){
+            log.info("Message: " + e.getMessage());
             return ResponseEntity.badRequest().build();
         }
     }
