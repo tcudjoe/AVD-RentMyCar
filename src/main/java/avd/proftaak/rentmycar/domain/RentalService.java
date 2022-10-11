@@ -21,4 +21,9 @@ public class RentalService extends User
 
     @OneToMany(cascade=ALL, mappedBy="carId")
     private Set<Car> cars;
+
+    @Override
+    public String GetDescription() {
+        return getFirstname() + " " + getLastname() + " i am a rental service";
+    }
 }

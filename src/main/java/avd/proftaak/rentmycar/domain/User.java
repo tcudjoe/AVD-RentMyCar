@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class User
+public abstract class User
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,4 +28,6 @@ public class User
     {
         this.type = type;
     }
+
+    public abstract String GetDescription();
 }

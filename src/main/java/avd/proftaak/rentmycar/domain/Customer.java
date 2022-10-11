@@ -19,4 +19,9 @@ public class Customer extends User
 {
     @OneToMany
     private Set<CarOrder> orders;
+
+    @Override
+    public String GetDescription() {
+        return getFirstname() + " " + getLastname() + " i am a customer";
+    }
 }
