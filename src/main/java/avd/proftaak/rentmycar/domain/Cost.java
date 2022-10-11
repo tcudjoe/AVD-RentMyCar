@@ -1,5 +1,6 @@
 package avd.proftaak.rentmycar.domain;
 
+import avd.proftaak.rentmycar.FuelType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +17,8 @@ public class Cost
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long costId;
 
+    private FuelType type;
+    
     @ManyToOne
     @JoinColumn(name="id", nullable=false)
     private RentalService rentalService;
