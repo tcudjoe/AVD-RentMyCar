@@ -18,7 +18,7 @@ public class Car
     Long carId;
 
     @ManyToOne
-    @JoinColumn(name="carId", nullable=false)
+    @JoinColumn(name="id", nullable=false)
     private RentalService rentalService;
 
     @OneToMany

@@ -17,11 +17,11 @@ public class CarOrder
     Long carOrderId;
 
     @ManyToOne
-    @JoinColumn(name="carOrderId", nullable=false)
+    @JoinColumn(name="carId", nullable=false)
     private Car car;
 
     @ManyToOne
-    @JoinColumn(name="carOrderId", nullable=false)
+    @JoinColumn(name="id", nullable=false)
     private Customer customer;
 
     public CarOrder(Car car, Customer customer){

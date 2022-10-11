@@ -14,9 +14,9 @@ public class Cost
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long costId;
+    private Long costId;
 
     @ManyToOne
-    @JoinColumn(name="costId", nullable=false)
+    @JoinColumn(name="id", nullable=false)
     private RentalService rentalService;
 }
