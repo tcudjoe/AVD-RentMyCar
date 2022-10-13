@@ -1,28 +1,29 @@
 package avd.proftaak.rentmycar.domain;
 
+import avd.proftaak.rentmycar.UserType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 
-@Slf4j
+@Entity
+@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.INTEGER)
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity
-public class User {
+public abstract class User
+{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-
     private Long id;
+
     private String firstname;
     private String lastname;
     private String email;
     private String password;
     private Integer phonenumber;
+    private UserType type;
+
+    public abstract String GetDescription();
 }
