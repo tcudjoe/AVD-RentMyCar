@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "user")
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.INTEGER)
 @NoArgsConstructor
 @Getter
@@ -16,7 +17,8 @@ public abstract class User
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Column(name = "userId", insertable = false, updatable = false)
+    Long id;
 
     private String firstname;
     private String lastname;

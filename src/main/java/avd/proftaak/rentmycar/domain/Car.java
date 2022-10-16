@@ -1,5 +1,6 @@
 package avd.proftaak.rentmycar.domain;
 
+import avd.proftaak.rentmycar.FuelType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,14 +16,15 @@ public class Car
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long carId;
+    @Column(name = "carId", nullable = false)
+    private Long carId;
     private String brand;
     private String model;
     private int yearOfBuild;
     private Integer kilometers;
     private int numberOfDoors;
     private double weight;
-    private String fuelType;
+    private FuelType fuelType;
     private int numberOfSeats;
     private String whereIsTheCar;
 

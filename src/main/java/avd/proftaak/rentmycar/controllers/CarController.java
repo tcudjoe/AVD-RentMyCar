@@ -6,6 +6,7 @@ import avd.proftaak.rentmycar.domain.Car;
 import avd.proftaak.rentmycar.repository.CarRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
