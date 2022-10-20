@@ -15,10 +15,20 @@ import java.util.Set;
 @Setter
 public class Customer extends User
 {
-    public static UserType TYPE = UserType.Customer;
+    public static final UserType TYPE = UserType.Customer;
 
     @OneToMany
     private Set<CarOrder> orders;
+
+    public Customer(String firstname, String lastname, String email, String password, String phonenumber) {
+        super(firstname, lastname, email, password, phonenumber);
+    }
+
+    public Customer(Set<CarOrder> orders) {
+        this.orders = orders;
+    }
+
+
 
     @Override
     public String GetDescription() {

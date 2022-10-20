@@ -42,19 +42,19 @@ public class CarController {
         return ResponseEntity.ok(found);
     }
 
-    @GetMapping("/{id}")
-    public Optional<Car> getById(@PathVariable Long id){
-        return carRepository.findById(id);
+    @GetMapping("/Cars/{carId}")
+    public Optional<Car> getById(@PathVariable Long carId){
+        return carRepository.findById(carId);
     }
 
-    @GetMapping("/{brand}")
+    @GetMapping("/Cars/{brand}")
     public ResponseEntity<List<Car>> getByBrand(@PathVariable String brand){
         List<Car> found = new ArrayList<>();
 
         if (brand == null){
             found.addAll(carRepository.findAll());
         }else {
-            found.addAll(carRepository.findCarByBrand(brand));
+            found.addAll(carRepository.findCarByBrandIgnoreCase(brand));
         }
 
         if (found.isEmpty()){
@@ -64,7 +64,7 @@ public class CarController {
         return ResponseEntity.ok(found);
     }
 
-    @GetMapping("/{kilometers}")
+    @GetMapping("/Cars/{kilometers}")
     public ResponseEntity<List<Car>> getByKilometers(@PathVariable Integer kilometers){
         List<Car> found = new ArrayList<>();
 
@@ -87,8 +87,18 @@ public class CarController {
             Car car = carRepository.save(newCar);
             return new ResponseEntity<>(car, HttpStatus.CREATED);
         }catch (IllegalArgumentException e){
-            log.info("Message: " + e.getMessage());
+            log.info("Error creating new car " + newCar + e.getMessage());
             return ResponseEntity.badRequest().build();
         }
+    }
+
+    @DeleteMapping("/Cars/{carId}")
+    public ResponseEntity<HttpStatus> deleteById(@PathVariable Long carId){
+        if(!carRepository.existsById(carId)){
+            return ResponseEntity.notFound().build();
+        }
+
+        carRepository.deleteById(carId);
+        return ResponseEntity.ok().build();
     }
 }

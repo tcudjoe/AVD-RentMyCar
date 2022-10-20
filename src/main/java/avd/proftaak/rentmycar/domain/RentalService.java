@@ -21,9 +21,17 @@ public class RentalService extends User
 
     @OneToMany(cascade=ALL, mappedBy="costId")
     private Set<Cost> costs;
-
-    @OneToMany(cascade=ALL, mappedBy="carId")
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy="carId",fetch = FetchType.LAZY)
     private Set<Car> cars;
+
+    public RentalService(Set<Cost> costs, Set<Car> cars) {
+        this.costs = costs;
+        this.cars = cars;
+    }
+
+    public RentalService(String firstname, String lastname, String email, String password, String phonenumber) {
+        super(firstname, lastname, email, password, phonenumber);
+    }
 
     @Override
     public String GetDescription() {
