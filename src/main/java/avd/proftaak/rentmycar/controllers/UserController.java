@@ -30,12 +30,13 @@ public class UserController {
         return userRepository.findById(id);
     }
 
-    public ResponseEntity<List<User>> getAll(@RequestParam(required = false) String firstname, String lastname){
+    @GetMapping
+    public ResponseEntity<List<User>> getAll(@RequestParam(required = false) String firstname){
         List<User> found = new ArrayList<>();
-        if (firstname == null && lastname == null){
+        if (firstname == null){
             found.addAll(userRepository.findAll());
         }else {
-            found.addAll(userRepository.findUserByFirstnameAndLastnameIgnoreCase(firstname, lastname));
+            found.addAll(userRepository.findUserByFirstnameIgnoreCase(firstname));
         }
 
         if (found.isEmpty()){

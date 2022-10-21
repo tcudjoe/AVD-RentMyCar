@@ -1,6 +1,7 @@
 package avd.proftaak.rentmycar;
 
 import avd.proftaak.rentmycar.domain.Car;
+import avd.proftaak.rentmycar.domain.Customer;
 import avd.proftaak.rentmycar.domain.User;
 import avd.proftaak.rentmycar.repository.CarRepository;
 import avd.proftaak.rentmycar.repository.UserRepository;
@@ -23,13 +24,16 @@ public class DummyData {
             log.info("Preloading... " + carRepository.save(car2));
             log.info("Preloading... " + carRepository.save(car3));
 
-            User user1 = new User("Tonny", "Klas", "tonnyklas@gmail.com", "password", "0612345678");
-//            User user2 = new User("Enerd", "Jern", "enerdjernd@gmail.com", "password", "0612345678");
-//            User user3 = new User("Mert", "Bras", "mertbras@gmail.com", "password", "0612345678");
-//
-            log.info("Preloading... " + userRepository.save(user1));
-//            log.info("Preloading... " + userRepository.save(user2));
-//            log.info("Preloading... " + userRepository.save(user3));
+            User customer1 = new Customer("Tonny", "Klas", "tonnyklas@gmail.com", "password", "0612345678");
+            User customer2 = new Customer("Enerd", "Jern", "enerdjernd@gmail.com", "password", "0612345678");
+            User customer3 = new Customer("Mert", "Bras", "mertbras@gmail.com", "password", "0612345678");
+
+            log.info("Preloading... " + userRepository.save(customer1));
+            log.info("Preloading... " + userRepository.save(customer2));
+            log.info("Preloading... " + userRepository.save(customer3));
+
+//            User user1 = new Customer("Tonny", "Klas", "tonnyklas@gmail.com", "password", "0612345678");
+
         };
     }
 }

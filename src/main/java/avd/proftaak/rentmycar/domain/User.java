@@ -1,5 +1,7 @@
 package avd.proftaak.rentmycar.domain;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +15,12 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class User {
+@DiscriminatorColumn(name="type", discriminatorType = DiscriminatorType.INTEGER)
+@JsonTypeInfo(use=JsonTypeInfo.Id.NAME, property = "userType")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Customer.class, name="CUSTOMER"),
+})
+public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "userId", nullable = false)
