@@ -1,7 +1,9 @@
 package avd.proftaak.rentmycar;
 
 import avd.proftaak.rentmycar.domain.Car;
+import avd.proftaak.rentmycar.domain.User;
 import avd.proftaak.rentmycar.repository.CarRepository;
+import avd.proftaak.rentmycar.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DummyData {
     @Bean
-    CommandLineRunner initDatabase(CarRepository carRepository) {
+    CommandLineRunner initDatabase(CarRepository carRepository, UserRepository userRepository) {
         return args -> {
             Car car1 = new Car("330i", "BMW", 2012, 220000, 5, 1499.00, CarCategories.ICE, 5, "somewhere");
             Car car2 = new Car("XC60", "VOLVO", 2019, 95034, 5, 1799.00, CarCategories.BEV, 7, "somewhere");
@@ -20,6 +22,14 @@ public class DummyData {
             log.info("Preloading... " + carRepository.save(car1));
             log.info("Preloading... " + carRepository.save(car2));
             log.info("Preloading... " + carRepository.save(car3));
+
+            User user1 = new User("Tonny", "Klas", "tonnyklas@gmail.com", "password", "0612345678");
+//            User user2 = new User("Enerd", "Jern", "enerdjernd@gmail.com", "password", "0612345678");
+//            User user3 = new User("Mert", "Bras", "mertbras@gmail.com", "password", "0612345678");
+//
+            log.info("Preloading... " + userRepository.save(user1));
+//            log.info("Preloading... " + userRepository.save(user2));
+//            log.info("Preloading... " + userRepository.save(user3));
         };
     }
 }

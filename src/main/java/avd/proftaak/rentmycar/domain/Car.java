@@ -8,11 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 
+@Slf4j
 @Entity
-@NoArgsConstructor
 @Getter
 @Setter
-@Slf4j
+@NoArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Car {
     @Id
@@ -30,7 +30,6 @@ public class Car {
     private String whereIsTheCar;
 
     public Car(String model, String brand, int yearOfBuild, Integer kilometers, int numberOfDoors, double weight, CarCategories category, int numberOfSeats, String whereIsTheCar) {
-//        this.id = id;
         this.model = model;
         this.brand = brand;
         this.yearOfBuild = yearOfBuild;
