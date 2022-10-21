@@ -30,13 +30,13 @@ public abstract class User {
     private String lastname;
     private String email;
     private String password;
-    private String phonenumber;
+    private String phoneNumber;
 
-    public User(String firstname, String lastname, String email, String password, String phonenumber) {
+    public User(String firstname, String lastname, String email, String password, String phoneNumber) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
-        this.phonenumber = phonenumber;
+        this.phoneNumber = phoneNumber;
     }
 }

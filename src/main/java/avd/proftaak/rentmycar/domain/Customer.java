@@ -14,7 +14,7 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 public class Customer extends User{
 
-    public Customer(String firstname, String lastname, String email, String password, String phonenumber) {
-        super(firstname, lastname, email, password, phonenumber);
+    public Customer(String firstname, String lastname, String email, String password, String phoneNumber) {
+        super(firstname, lastname, email, password, phoneNumber);
     }
 }
