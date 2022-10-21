@@ -14,7 +14,7 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 public class RentalService extends User{
 
-    public RentalService(String firstname, String lastname, String email, String password, String phonenumber) {
-        super(firstname, lastname, email, password, phonenumber);
+    public RentalService(String firstName, String lastName, String email, String password, String phoneNumber) {
+        super(firstName, lastName, email, password, phoneNumber);
     }
 }
