@@ -14,8 +14,7 @@ import javax.persistence.*;
 @Setter
 @Slf4j
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-
-public abstract class Car {
+public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "carid", nullable = false)
@@ -26,19 +25,19 @@ public abstract class Car {
     private Integer kilometers;
     private int numberOfDoors;
     private double weight;
-    private CarCategories categorie;
+    private CarCategories category;
     private int numberOfSeats;
     private String whereIsTheCar;
 
-    public Car(Long id, String model, String brand, int yearOfBuild, Integer kilometers, int numberOfDoors, double weight, CarCategories categorie, int numberOfSeats, String whereIsTheCar) {
-        this.id = id;
+    public Car(String model, String brand, int yearOfBuild, Integer kilometers, int numberOfDoors, double weight, CarCategories category, int numberOfSeats, String whereIsTheCar) {
+//        this.id = id;
         this.model = model;
         this.brand = brand;
         this.yearOfBuild = yearOfBuild;
         this.kilometers = kilometers;
         this.numberOfDoors = numberOfDoors;
         this.weight = weight;
-        this.categorie = categorie;
+        this.category = category;
         this.numberOfSeats = numberOfSeats;
         this.whereIsTheCar = whereIsTheCar;
     }
