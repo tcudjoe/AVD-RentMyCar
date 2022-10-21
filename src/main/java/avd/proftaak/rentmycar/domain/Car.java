@@ -1,5 +1,6 @@
 package avd.proftaak.rentmycar.domain;
 
+import avd.proftaak.rentmycar.CarCategories;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,7 +18,7 @@ import javax.persistence.*;
 public abstract class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column(name = "carid", nullable = false)
     private Long id;
     private String model;
     private String brand;
@@ -25,11 +26,11 @@ public abstract class Car {
     private Integer kilometers;
     private int numberOfDoors;
     private double weight;
-    private String fuelType;
+    private CarCategories categorie;
     private int numberOfSeats;
     private String whereIsTheCar;
 
-    public Car(Long id, String model, String brand, int yearOfBuild, int kilometers, int numberOfDoors, double weight, String fuelType, int numberOfSeats, String whereIsTheCar) {
+    public Car(Long id, String model, String brand, int yearOfBuild, Integer kilometers, int numberOfDoors, double weight, CarCategories categorie, int numberOfSeats, String whereIsTheCar) {
         this.id = id;
         this.model = model;
         this.brand = brand;
@@ -37,7 +38,7 @@ public abstract class Car {
         this.kilometers = kilometers;
         this.numberOfDoors = numberOfDoors;
         this.weight = weight;
-        this.fuelType = fuelType;
+        this.categorie = categorie;
         this.numberOfSeats = numberOfSeats;
         this.whereIsTheCar = whereIsTheCar;
     }
