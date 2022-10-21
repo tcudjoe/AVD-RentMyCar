@@ -1,18 +1,19 @@
 package avd.proftaak.rentmycar.controllers;
 
-import avd.proftaak.rentmycar.domain.Car;
-import avd.proftaak.rentmycar.domain.User;
-import avd.proftaak.rentmycar.repository.CarRepository;
-import avd.proftaak.rentmycar.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
+
+import avd.proftaak.rentmycar.repository.UserRepository;
+import avd.proftaak.rentmycar.domain.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
+import java.util.List;
+
 
 @Slf4j
 @RestController
@@ -64,14 +65,14 @@ public class UserController {
         return ResponseEntity.ok(found);
     }
 
-//    @PostMapping
-//    public ResponseEntity<User> create(@RequestBody User newUser){
-//        try{
-//            User user = UserRepository.save(newUser);
-//            return new ResponseEntity<>(user, HttpStatus.CREATED);
-//        }catch (IllegalArgumentException e){
-//            log.info("Error creating new user " + newUser + e.getMessage());
-//            return ResponseEntity.badRequest().build();
-//        }
-//    }
+    @PostMapping
+    public ResponseEntity<User> create(@RequestBody User newUser){
+        try{
+            User user = userRepository.save(newUser);
+            return new ResponseEntity<>(user, HttpStatus.CREATED);
+        }catch (IllegalArgumentException e){
+            log.info("Error creating new user " + newUser + e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }
