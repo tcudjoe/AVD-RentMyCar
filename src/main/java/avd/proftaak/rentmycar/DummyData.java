@@ -2,6 +2,7 @@ package avd.proftaak.rentmycar;
 
 import avd.proftaak.rentmycar.domain.Car;
 import avd.proftaak.rentmycar.domain.Customer;
+import avd.proftaak.rentmycar.domain.RentalService;
 import avd.proftaak.rentmycar.domain.User;
 import avd.proftaak.rentmycar.repository.CarRepository;
 import avd.proftaak.rentmycar.repository.UserRepository;
@@ -32,8 +33,13 @@ public class DummyData {
             log.info("Preloading... " + userRepository.save(customer2));
             log.info("Preloading... " + userRepository.save(customer3));
 
-//            User user1 = new Customer("Tonny", "Klas", "tonnyklas@gmail.com", "password", "0612345678");
+            User rentalService1 = new RentalService("Tonny", "Klas", "tonnyklas@gmail.com", "password", "0612345678");
+            User rentalService2 = new RentalService("Tonny", "Klas", "tonnyklas@gmail.com", "password", "0612345678");
+            User rentalService3 = new RentalService("Tonny", "Klas", "tonnyklas@gmail.com", "password", "0612345678");
 
+            log.info("Preloading... " + userRepository.save(rentalService1));
+            log.info("Preloading... " + userRepository.save(rentalService2));
+            log.info("Preloading... " + userRepository.save(rentalService3));
         };
     }
 }

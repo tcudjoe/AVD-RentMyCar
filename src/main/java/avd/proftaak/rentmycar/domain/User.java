@@ -19,6 +19,7 @@ import javax.persistence.*;
 @JsonTypeInfo(use=JsonTypeInfo.Id.NAME, property = "userType")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = Customer.class, name="CUSTOMER"),
+        @JsonSubTypes.Type(value = RentalService.class, name="RENTALSERVICE")
 })
 public abstract class User {
     @Id
