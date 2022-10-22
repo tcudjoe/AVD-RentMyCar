@@ -1,37 +1,26 @@
 package avd.proftaak.rentmycar.domain;
 
-import avd.proftaak.rentmycar.UserType;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import java.util.Set;
 
+@Slf4j
 @Entity
-@NoArgsConstructor
 @Getter
 @Setter
-public class Customer extends User
-{
-    public static final UserType TYPE = UserType.Customer;
+@NoArgsConstructor
+public class Customer extends User{
 
-    @OneToMany
-    private Set<CarOrder> orders;
 
     public Customer(String firstname, String lastname, String email, String password, String phonenumber) {
         super(firstname, lastname, email, password, phonenumber);
     }
 
-    public Customer(Set<CarOrder> orders) {
-        this.orders = orders;
-    }
-
-
-
-    @Override
-    public String GetDescription() {
-        return getFirstname() + " " + getLastname() + " i am a customer";
-    }
+    @OneToMany
+    Set<Order> orders;
 }

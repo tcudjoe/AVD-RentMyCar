@@ -1,49 +1,52 @@
 package avd.proftaak.rentmycar.domain;
 
-import avd.proftaak.rentmycar.FuelType;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import avd.proftaak.rentmycar.CarCategories;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.Set;
 import javax.persistence.*;
 import java.util.Set;
 
+@Slf4j
 @Entity
-@NoArgsConstructor
 @Getter
 @Setter
-public class Car
-{
+@NoArgsConstructor
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "carId", nullable = false)
-    private Long carId;
+    @Column(name = "carid", nullable = false)
+    private Long id;
+    private String model;
+
     private String brand;
     private String model;
     private int yearOfBuild;
     private Integer kilometers;
     private int numberOfDoors;
     private double weight;
-    private FuelType fuelType;
+    private CarCategories category;
     private int numberOfSeats;
     private String whereIsTheCar;
 
-    @ManyToOne
-    @JoinColumn(name="rentalServiceId", nullable=false)
-    private RentalService rentalService;
-
     @OneToMany
-    private Set<CarOrder> orders;
+    Set<Order> orders;
 
-    public Car(Long carId, String brand, String model, int yearOfBuild, Integer kilometers, int numberOfDoors, double weight, FuelType fuelType, int numberOfSeats, String whereIsTheCar) {
-        this.carId = carId;
+    public Car(String model, String brand, int yearOfBuild, Integer kilometers, int numberOfDoors, double weight, CarCategories category, int numberOfSeats, String whereIsTheCar) {
+        this.model = model;
+
         this.brand = brand;
         this.model = model;
         this.yearOfBuild = yearOfBuild;
         this.kilometers = kilometers;
         this.numberOfDoors = numberOfDoors;
         this.weight = weight;
-        this.fuelType = fuelType;
+        this.category = category;
         this.numberOfSeats = numberOfSeats;
         this.whereIsTheCar = whereIsTheCar;
     }

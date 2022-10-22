@@ -1,20 +1,20 @@
 package avd.proftaak.rentmycar.controllers;
 
-import lombok.extern.slf4j.Slf4j;
-
-import avd.proftaak.rentmycar.repository.UserRepository;
+import avd.proftaak.rentmycar.domain.Car;
 import avd.proftaak.rentmycar.domain.User;
-
+import avd.proftaak.rentmycar.repository.CarRepository;
+import avd.proftaak.rentmycar.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.List;
+import java.util.Optional;
 
-
+//Alles werkt hier ook. Ik heb hier ook delete mapping nog niet uitgeprobeerd maar dat doe ik ook wel
 @Slf4j
 @RestController
 @RequestMapping("/Users")
@@ -27,18 +27,18 @@ public class UserController {
     }
 
 
-    @GetMapping("/Users/{id}")
+    @GetMapping("/{id}")
     public Optional<User> getById(@PathVariable Long id){
         return userRepository.findById(id);
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getAll(@RequestParam(required = false) String firstname, String lastname){
+    public ResponseEntity<List<User>> getAll(@RequestParam(required = false) String firstname){
         List<User> found = new ArrayList<>();
-        if (firstname == null && lastname == null){
+        if (firstname == null){
             found.addAll(userRepository.findAll());
         }else {
-            found.addAll(userRepository.findUserByFirstnameAndLastnameIgnoreCase(firstname, lastname));
+            found.addAll(userRepository.findUserByFirstnameIgnoreCase(firstname));
         }
 
         if (found.isEmpty()){
@@ -48,7 +48,8 @@ public class UserController {
         return ResponseEntity.ok(found);
     }
 
-    @GetMapping("/Users/{email}")
+
+    @GetMapping("/{email}")
     public ResponseEntity<List<User>> getByEmail(@PathVariable String email){
         List<User> found = new ArrayList<>();
 
@@ -71,7 +72,7 @@ public class UserController {
             User user = userRepository.save(newUser);
             return new ResponseEntity<>(user, HttpStatus.CREATED);
         }catch (IllegalArgumentException e){
-            log.info("Error creating new user " + newUser + e.getMessage());
+            log.info("Message: " + e.getMessage());
             return ResponseEntity.badRequest().build();
         }
     }

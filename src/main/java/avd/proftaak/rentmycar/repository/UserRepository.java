@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    public List<User> users = new ArrayList<>();
+    List<User> user = new ArrayList<>();
 
-    List<User> findUserByFirstnameAndLastnameIgnoreCase(String firstname, String lastname);
+    List<User> findUserByFirstnameIgnoreCase(String firstname);
     List<User> findUserByEmailIgnoreCase(String email);
+
 }

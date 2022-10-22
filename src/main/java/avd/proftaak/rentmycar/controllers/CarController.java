@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+//Carcontroller doet post en get mappings correct. Delete mappings hebik nog niet geprobeerd maar dat kan ik zelf wel doen
 @Slf4j
 @RestController
 @RequestMapping("/Cars")
@@ -91,7 +92,8 @@ public class CarController {
         }
     }
 
-    @DeleteMapping("/Cars/{carId}")
+
+    @DeleteMapping
     public ResponseEntity<HttpStatus> deleteById(@PathVariable Long carId){
         if(!carRepository.existsById(carId)){
             return ResponseEntity.notFound().build();
