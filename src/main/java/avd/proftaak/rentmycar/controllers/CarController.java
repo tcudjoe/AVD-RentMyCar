@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+//Carcontroller doet post en get mappings correct. Delete mappings hebik nog niet geprobeerd maar dat kan ik zelf wel doen
 @Slf4j
 @RestController
 @RequestMapping("/Cars")
@@ -41,12 +42,12 @@ public class CarController {
         return ResponseEntity.ok(found);
     }
 
-    @GetMapping("/Cars/{id}")
+    @GetMapping("/{id}")
     public Optional<Car> getById(@PathVariable Long id){
         return carRepository.findById(id);
     }
 
-    @GetMapping("/Cars/{brand}")
+    @GetMapping("/{brand}")
     public ResponseEntity<List<Car>> getByBrand(@PathVariable String brand){
         List<Car> found = new ArrayList<>();
 
@@ -63,7 +64,7 @@ public class CarController {
         return ResponseEntity.ok(found);
     }
 
-    @GetMapping("/Cars/{kilometers}")
+    @GetMapping("/{kilometers}")
     public ResponseEntity<List<Car>> getByKilometers(@PathVariable Integer kilometers){
         List<Car> found = new ArrayList<>();
 

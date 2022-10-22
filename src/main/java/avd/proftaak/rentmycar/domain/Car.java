@@ -1,11 +1,13 @@
 package avd.proftaak.rentmycar.domain;
 
 import avd.proftaak.rentmycar.CarCategories;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Set;
 import javax.persistence.*;
 
 @Slf4j
@@ -28,6 +30,9 @@ public class Car {
     private CarCategories category;
     private int numberOfSeats;
     private String whereIsTheCar;
+
+    @OneToMany
+    Set<Order> orders;
 
     public Car(String model, String brand, int yearOfBuild, Integer kilometers, int numberOfDoors, double weight, CarCategories category, int numberOfSeats, String whereIsTheCar) {
         this.model = model;

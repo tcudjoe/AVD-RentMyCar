@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+//Alles werkt hier ook. Ik heb hier ook delete mapping nog niet uitgeprobeerd maar dat doe ik ook wel
 @Slf4j
 @RestController
 @RequestMapping("/Users")
@@ -25,7 +26,7 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/Users/{id}")
+    @GetMapping("/{id}")
     public Optional<User> getById(@PathVariable Long id){
         return userRepository.findById(id);
     }
@@ -46,7 +47,7 @@ public class UserController {
         return ResponseEntity.ok(found);
     }
 
-    @GetMapping("/Users/{email}")
+    @GetMapping("/{email}")
     public ResponseEntity<List<User>> getByEmail(@PathVariable String email){
         List<User> found = new ArrayList<>();
 
