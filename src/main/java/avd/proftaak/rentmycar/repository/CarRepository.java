@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public interface CarRepository extends JpaRepository<Car, Long> {
     public List<Car> cars = new ArrayList<>();
 

@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 @NoArgsConstructor
 public class Customer extends User{
 
+
     public Customer(String firstname, String lastname, String email, String password, String phonenumber) {
         super(firstname, lastname, email, password, phonenumber);
     }
