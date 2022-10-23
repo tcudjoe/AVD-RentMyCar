@@ -1,30 +1,28 @@
 package avd.proftaak.rentmycar.domain;
 
-import avd.proftaak.rentmycar.UserType;
+import avd.proftaak.rentmycar.controllers.dto.Order;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.OneToMany;
 import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
+@Slf4j
 @Entity
-@NoArgsConstructor
 @Getter
 @Setter
-public class Customer extends User
-{
-    public static final UserType TYPE = UserType.Customer;
+@NoArgsConstructor
+public class Customer extends User{
+
+
+    public Customer(String firstname, String lastname, String email, String password, String phonenumber) {
+        super(firstname, lastname, email, password, phonenumber);
+    }
 
     @OneToMany
-    private Set<CarOrder> orders;
+    Set<Order> orders;
 
-    @Override
-    public String GetDescription() {
-        return getFirstname() + " " + getLastname() + " i am a customer";
-    }
 }
