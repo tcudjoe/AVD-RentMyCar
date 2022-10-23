@@ -26,8 +26,11 @@ public class Order {
     @JoinColumn(name = "customerId")
     private Customer customer;
 
-    public Order(Car car, Customer customer) {
+    private String description;
+
+    public Order(Car car, Customer customer, String description) {
         this.car = car;
         this.customer = customer;
+        this.description = description;
     }
 }

@@ -40,9 +40,9 @@ public class DummyData {
             log.info("Preloading... " + userRepository.save(rentalService2));
             log.info("Preloading... " + userRepository.save(rentalService3));
 
-            Order order1 = new Order(car1, customer1);
-            Order order2 = new Order(car2, customer2);
-            Order order3 = new Order(car3, customer3);
+            Order order1 = new Order(car1, customer1, "test 1");
+            Order order2 = new Order(car2, customer2, "test 2");
+            Order order3 = new Order(car3, customer3, "test 3");
 
             log.info("Preloading... " + orderRepository.save(order1));
             log.info("Preloading... " + orderRepository.save(order2));

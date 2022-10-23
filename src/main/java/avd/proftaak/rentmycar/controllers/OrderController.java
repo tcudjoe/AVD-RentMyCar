@@ -35,12 +35,12 @@ public class OrderController {
 
     //Getmapping has a bug, kijk even of je dat kan fixen
     @GetMapping
-    public ResponseEntity<List<Order>> getAll(@RequestParam(required = false) Long orderId){
+    public ResponseEntity<List<Order>> getAll(@RequestParam(required = false) String description){
         List<Order> found = new ArrayList<>();
-        if (orderId == 0){
+        if (description == null){
             found.addAll(orderRepository.findAll());
         }else {
-            found.addAll(orderRepository.findOrderByCustomerId(Math.toIntExact(orderId)));
+            found.addAll(orderRepository.findOrderByDescriptionIgnoreCase(description));
         }
 
         if (found.isEmpty()){
