@@ -26,6 +26,7 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
+
     @GetMapping("/{id}")
     public Optional<User> getById(@PathVariable Long id){
         return userRepository.findById(id);
@@ -46,6 +47,7 @@ public class UserController {
 
         return ResponseEntity.ok(found);
     }
+
 
     @GetMapping("/{email}")
     public ResponseEntity<List<User>> getByEmail(@PathVariable String email){
