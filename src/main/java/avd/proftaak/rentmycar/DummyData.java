@@ -1,5 +1,6 @@
 package avd.proftaak.rentmycar;
 
+import avd.proftaak.rentmycar.controllers.dto.Order;
 import avd.proftaak.rentmycar.domain.*;
 import avd.proftaak.rentmycar.repository.CarRepository;
 import avd.proftaak.rentmycar.repository.OrderRepository;
@@ -32,9 +33,9 @@ public class DummyData {
             log.info("Preloading... " + userRepository.save(customer2));
             log.info("Preloading... " + userRepository.save(customer3));
 
-            RentalService rentalService1 = new RentalService("Jeremy", "Nasda", "jeremynasda@gmail.com", "password", "0612345678");
-            RentalService rentalService2 = new RentalService("Mason", "Posden", "masonposden@gmail.com", "password", "0612345678");
-            RentalService rentalService3 = new RentalService("Rene", "Slesny", "reneslesny@gmail.com", "password", "0612345678");
+            RentalService rentalService1 = new RentalService("Jeremy", "Nasda", "jeremynasda@gmail.com", "password", "0612345678"/*, new HashSet<>(1), new HashSet<>(6000)*/);
+            RentalService rentalService2 = new RentalService("Mason", "Posden", "masonposden@gmail.com", "password", "0612345678"/*, new HashSet<>(2), new HashSet<>(7000)*/);
+            RentalService rentalService3 = new RentalService("Rene", "Slesny", "reneslesny@gmail.com", "password", "0612345678"/*, new HashSet<>(3), new HashSet<>(8000)*/);
 
             log.info("Preloading... " + userRepository.save(rentalService1));
             log.info("Preloading... " + userRepository.save(rentalService2));

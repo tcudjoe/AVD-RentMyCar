@@ -32,6 +32,7 @@ public class UserController {
         return userRepository.findById(id);
     }
 
+    //Gets all users based on firstname
     @GetMapping
     public ResponseEntity<List<User>> getAll(@RequestParam(required = false) String firstname){
         List<User> found = new ArrayList<>();
@@ -49,6 +50,7 @@ public class UserController {
     }
 
 
+    //Gets all users based on email
     @GetMapping("/{email}")
     public ResponseEntity<List<User>> getByEmail(@PathVariable String email){
         List<User> found = new ArrayList<>();
@@ -66,6 +68,7 @@ public class UserController {
         return ResponseEntity.ok(found);
     }
 
+    //Creates new user
     @PostMapping
     public ResponseEntity<User> create(@RequestBody User newUser){
         try{

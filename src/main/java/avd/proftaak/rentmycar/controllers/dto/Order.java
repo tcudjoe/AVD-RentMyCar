@@ -1,5 +1,7 @@
-package avd.proftaak.rentmycar.domain;
+package avd.proftaak.rentmycar.controllers.dto;
 
+import avd.proftaak.rentmycar.domain.Car;
+import avd.proftaak.rentmycar.domain.Customer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +18,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "orderId", nullable = false)
-    private Long id;
+    private Long orderId;
 
     @ManyToOne
     @JoinColumn(name = "carId", nullable = false)
@@ -27,6 +29,10 @@ public class Order {
     private Customer customer;
 
     private String description;
+
+//    @ManyToOne
+//    @JoinColumn(name = "costId")
+//    private Cost cost;
 
     public Order(Car car, Customer customer, String description) {
         this.car = car;

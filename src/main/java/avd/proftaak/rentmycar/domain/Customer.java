@@ -1,5 +1,6 @@
 package avd.proftaak.rentmycar.domain;
 
+import avd.proftaak.rentmycar.controllers.dto.Order;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
@@ -23,4 +24,5 @@ public class Customer extends User{
 
     @OneToMany
     Set<Order> orders;
+
 }

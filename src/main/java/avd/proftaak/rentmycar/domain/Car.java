@@ -2,6 +2,7 @@ package avd.proftaak.rentmycar.domain;
 
 import avd.proftaak.rentmycar.CarCategories;
 
+import avd.proftaak.rentmycar.controllers.dto.Order;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.Set;
 import javax.persistence.*;
-import java.util.Set;
 
 @Slf4j
 @Entity
@@ -22,7 +22,6 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "carid", nullable = false)
     private Long id;
-    private String model;
 
     private String brand;
     private String model;
@@ -37,9 +36,8 @@ public class Car {
     @OneToMany
     Set<Order> orders;
 
+    //car constructor
     public Car(String model, String brand, int yearOfBuild, Integer kilometers, int numberOfDoors, double weight, CarCategories category, int numberOfSeats, String whereIsTheCar) {
-        this.model = model;
-
         this.brand = brand;
         this.model = model;
         this.yearOfBuild = yearOfBuild;
@@ -49,9 +47,5 @@ public class Car {
         this.category = category;
         this.numberOfSeats = numberOfSeats;
         this.whereIsTheCar = whereIsTheCar;
-    }
-
-    public Car(RentalService rentalService){
-        this.rentalService = rentalService;
     }
 }

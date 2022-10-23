@@ -26,6 +26,7 @@ public class CarController {
         this.carRepository = carRepository;
     }
 
+    //Gets all cars based on the model
     @GetMapping
     public ResponseEntity<List<Car>> getAll(@RequestParam(required = false) String model){
         List<Car> found = new ArrayList<>();
@@ -42,12 +43,14 @@ public class CarController {
         return ResponseEntity.ok(found);
     }
 
-    @GetMapping("/Cars/{carId}")
+    //Gets all cars based on id
+    @GetMapping("/{carId}")
     public Optional<Car> getById(@PathVariable Long carId){
         return carRepository.findById(carId);
     }
 
-    @GetMapping("/Cars/{brand}")
+    //Gets all cars based on brand
+    @GetMapping("/{brand}")
     public ResponseEntity<List<Car>> getByBrand(@PathVariable String brand){
         List<Car> found = new ArrayList<>();
 
@@ -64,7 +67,8 @@ public class CarController {
         return ResponseEntity.ok(found);
     }
 
-    @GetMapping("/Cars/{kilometers}")
+    //Gets all cars based on kilometers
+    @GetMapping("/{kilometers}")
     public ResponseEntity<List<Car>> getByKilometers(@PathVariable Integer kilometers){
         List<Car> found = new ArrayList<>();
 
@@ -81,6 +85,7 @@ public class CarController {
         return ResponseEntity.ok(found);
     }
 
+    //Creates new car
     @PostMapping
     public ResponseEntity<Car> create(@RequestBody Car newCar){
         try{
@@ -93,6 +98,7 @@ public class CarController {
     }
 
 
+    //Deletes car based on id
     @DeleteMapping
     public ResponseEntity<HttpStatus> deleteById(@PathVariable Long carId){
         if(!carRepository.existsById(carId)){

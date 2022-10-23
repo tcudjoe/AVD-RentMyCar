@@ -1,6 +1,6 @@
 package avd.proftaak.rentmycar.repository;
 
-import avd.proftaak.rentmycar.domain.Order;
+import avd.proftaak.rentmycar.controllers.dto.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.ArrayList;

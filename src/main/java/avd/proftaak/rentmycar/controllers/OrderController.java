@@ -1,8 +1,6 @@
 package avd.proftaak.rentmycar.controllers;
 
-import avd.proftaak.rentmycar.domain.Car;
-import avd.proftaak.rentmycar.domain.Order;
-import avd.proftaak.rentmycar.domain.User;
+import avd.proftaak.rentmycar.controllers.dto.Order;
 import avd.proftaak.rentmycar.repository.OrderRepository;
 
 import org.springframework.http.HttpStatus;
@@ -33,7 +31,7 @@ public class OrderController {
         return orderRepository.findById(id);
     }
 
-    //Getmapping has a bug, kijk even of je dat kan fixen
+    //Gets all cars based on description
     @GetMapping
     public ResponseEntity<List<Order>> getAll(@RequestParam(required = false) String description){
         List<Order> found = new ArrayList<>();
@@ -50,6 +48,7 @@ public class OrderController {
         return ResponseEntity.ok(found);
     }
 
+    //Creates new order
     @PostMapping
     public ResponseEntity<Order> create(@RequestBody Order newOrder){
         try{
