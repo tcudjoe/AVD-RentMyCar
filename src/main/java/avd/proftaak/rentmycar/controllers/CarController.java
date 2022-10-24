@@ -1,5 +1,8 @@
 package avd.proftaak.rentmycar.controllers;
 
+import avd.proftaak.rentmycar.domain.RentalService;
+import avd.proftaak.rentmycar.domain.User;
+import avd.proftaak.rentmycar.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 
 import avd.proftaak.rentmycar.domain.Car;
@@ -20,10 +23,12 @@ import java.util.Optional;
 @RequestMapping("/Cars")
 public class CarController {
     private final CarRepository carRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public CarController(CarRepository carRepository) {
+    public CarController(CarRepository carRepository, UserRepository userRepository) {
         this.carRepository = carRepository;
+        this.userRepository = userRepository;
     }
 
     //Gets all cars based on the model
@@ -86,10 +91,17 @@ public class CarController {
     }
 
     //Creates new car
-    @PostMapping
-    public ResponseEntity<Car> create(@RequestBody Car newCar){
+    @PostMapping("/{rentalServiceId}")
+    public ResponseEntity<Car> create(@PathVariable Long rentalServiceId, @RequestBody Car newCar){
+        var user = userRepository.findById(rentalServiceId);
+        if(user.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        var rentalService = (RentalService) user.get();
         try{
             Car car = carRepository.save(newCar);
+            rentalService.AddCar(car);
             return new ResponseEntity<>(car, HttpStatus.CREATED);
         }catch (IllegalArgumentException e){
             log.info("Error creating new car " + newCar + e.getMessage());
