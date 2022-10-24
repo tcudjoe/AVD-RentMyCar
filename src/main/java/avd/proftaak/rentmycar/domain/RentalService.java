@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.util.Set;
@@ -23,7 +24,7 @@ public class RentalService extends User{
     @OneToMany(mappedBy = "costId")
     private Set<Cost> costs;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Car> cars;
 
     public void AddCar(Car car)
