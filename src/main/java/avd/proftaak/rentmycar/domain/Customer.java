@@ -25,6 +25,11 @@ public class Customer extends User{
     @OneToMany
     Set<Order> orders;
 
+    public void AddOrder(Order order)
+    {
+        this.orders.add(order);
+    }
+
     @Override
     public String Name()
     {
