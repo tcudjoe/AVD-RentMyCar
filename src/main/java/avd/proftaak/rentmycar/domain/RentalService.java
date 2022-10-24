@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.util.Set;
@@ -16,21 +17,24 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 public class RentalService extends User{
-    public RentalService(String firstname, String lastname, String email, String password, String phonenumber/*, Set<Car> car, Set<Cost> cost*/) {
+    public RentalService(String firstname, String lastname, String email, String password, String phonenumber) {
         super(firstname, lastname, email, password, phonenumber);
-//        this.car = car;
-//        this.cost = cost;
     }
 
-//    public RentalService(/*Set<Cost> cost,*/ Set<Car> car) {
-////        this.cost = cost;
-//        this.car = car;
-//    }
+    @OneToMany(mappedBy = "costId")
+    private Set<Cost> costs;
 
-//    @OneToMany(mappedBy = "costId")
-//    private Set<Cost> cost;
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<Car> cars;
 
-//    @OneToMany(mappedBy = "id")
-//    private Set<Car> car;
+    public void AddCar(Car car)
+    {
+        this.cars.add(car);
+    }
 
+    @Override
+    public String Name()
+    {
+        return String.join(",", "A rental service called: ", this.getFirstname(), this.getLastname());
+    }
 }

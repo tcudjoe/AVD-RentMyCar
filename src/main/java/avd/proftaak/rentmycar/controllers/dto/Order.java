@@ -39,11 +39,6 @@ public class Order {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
-//    @ManyToOne
-//    @JoinColumn(name = "costId")
-//    private Cost cost;
-
-
     public Order(Car car, Customer customer, RentalService rentalService, String description, LocalDateTime startTime, LocalDateTime endTime) {
         this.car = car;
         this.customer = customer;
