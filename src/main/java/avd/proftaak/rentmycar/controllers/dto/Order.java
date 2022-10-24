@@ -2,6 +2,7 @@ package avd.proftaak.rentmycar.controllers.dto;
 
 import avd.proftaak.rentmycar.domain.Car;
 import avd.proftaak.rentmycar.domain.Customer;
+import avd.proftaak.rentmycar.domain.RentalService;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,6 +31,10 @@ public class Order {
     @JoinColumn(name = "customerId")
     private Customer customer;
 
+    @ManyToOne
+    @JoinColumn(name = "rentalserviceId")
+    private RentalService rentalService;
+
     private String description;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
@@ -39,9 +44,10 @@ public class Order {
 //    private Cost cost;
 
 
-    public Order(Car car, Customer customer, String description, LocalDateTime startTime, LocalDateTime endTime) {
+    public Order(Car car, Customer customer, RentalService rentalService, String description, LocalDateTime startTime, LocalDateTime endTime) {
         this.car = car;
         this.customer = customer;
+        this.rentalService = rentalService;
         this.description = description;
         this.startTime = startTime;
         this.endTime = endTime;

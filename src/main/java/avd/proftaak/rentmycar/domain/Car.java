@@ -32,12 +32,14 @@ public class Car {
     private CarCategories category;
     private int numberOfSeats;
     private String whereIsTheCar;
+    private double cost;
 
     @OneToMany
     Set<Order> orders;
 
     //car constructor
-    public Car(String model, String brand, int yearOfBuild, Integer kilometers, int numberOfDoors, double weight, CarCategories category, int numberOfSeats, String whereIsTheCar) {
+
+    public Car(String brand, String model, int yearOfBuild, Integer kilometers, int numberOfDoors, double weight, CarCategories category, int numberOfSeats, String whereIsTheCar, double cost) {
         this.brand = brand;
         this.model = model;
         this.yearOfBuild = yearOfBuild;
@@ -47,5 +49,6 @@ public class Car {
         this.category = category;
         this.numberOfSeats = numberOfSeats;
         this.whereIsTheCar = whereIsTheCar;
+        this.cost = cost;
     }
 }

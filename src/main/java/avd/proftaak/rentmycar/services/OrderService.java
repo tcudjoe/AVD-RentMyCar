@@ -12,14 +12,14 @@ import java.util.Optional;
 
 @Service
 public class OrderService {
-//    private final UserRepository userRepository;
-//    private final CarRepository carRepository;
-//
-//    public OrderService(UserRepository userRepository, CarRepository carRepository) {
-//        this.carRepository = carRepository;
-//        this.userRepository = userRepository;
-//    }
-//
+    private final UserRepository userRepository;
+    private final CarRepository carRepository;
+
+    public OrderService(UserRepository userRepository, CarRepository carRepository) {
+        this.carRepository = carRepository;
+        this.userRepository = userRepository;
+    }
+
 //    public boolean addOrder(Long customerId, Long carId) {
 //        Optional<Car> maybeCar = carRepository.findById(carId);
 //        Optional<User> maybeCustomer = userRepository.findById(customerId);
