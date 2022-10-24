@@ -25,4 +25,9 @@ public class Customer extends User{
     @OneToMany
     Set<Order> orders;
 
+    @Override
+    public String Name()
+    {
+        return String.join(",", "A customer called: ", this.getFirstname(), this.getLastname());
+    }
 }

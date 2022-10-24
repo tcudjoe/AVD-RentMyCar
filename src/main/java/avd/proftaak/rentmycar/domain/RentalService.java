@@ -30,4 +30,10 @@ public class RentalService extends User{
     {
         this.cars.add(car);
     }
+
+    @Override
+    public String Name()
+    {
+        return String.join(",", "A rental service called: ", this.getFirstname(), this.getLastname());
+    }
 }
