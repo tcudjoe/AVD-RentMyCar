@@ -17,7 +17,7 @@ import java.util.Optional;
 //Alles werkt hier ook. Ik heb hier ook delete mapping nog niet uitgeprobeerd maar dat doe ik ook wel
 @Slf4j
 @RestController
-@RequestMapping("/Users")
+@RequestMapping("/users")
 public class UserController {
     private final UserRepository userRepository;
 
@@ -51,7 +51,7 @@ public class UserController {
 
 
     //Gets all users based on email
-    @GetMapping("/{email}")
+    @GetMapping("/emails/{email}")
     public ResponseEntity<List<User>> getByEmail(@PathVariable String email){
         List<User> found = new ArrayList<>();
 
