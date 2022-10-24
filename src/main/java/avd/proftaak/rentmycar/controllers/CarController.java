@@ -20,7 +20,7 @@ import java.util.Optional;
 //Carcontroller doet post en get mappings correct. Delete mappings hebik nog niet geprobeerd maar dat kan ik zelf wel doen
 @Slf4j
 @RestController
-@RequestMapping("/Cars")
+@RequestMapping("/cars")
 public class CarController {
     private final CarRepository carRepository;
     private final UserRepository userRepository;
