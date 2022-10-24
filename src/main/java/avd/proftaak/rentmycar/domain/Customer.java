@@ -16,13 +16,7 @@ import javax.persistence.OneToMany;
 @Setter
 @NoArgsConstructor
 public class Customer extends User{
-
-
     public Customer(String firstname, String lastname, String email, String password, String phonenumber) {
         super(firstname, lastname, email, password, phonenumber);
     }
-
-    @OneToMany
-    Set<Order> orders;
-
 }
