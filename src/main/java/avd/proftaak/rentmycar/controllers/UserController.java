@@ -51,7 +51,7 @@ public class UserController {
 
 
     //Gets all users based on email
-    @GetMapping("/{email}")
+    @GetMapping("/emails/{email}")
     public ResponseEntity<List<User>> getByEmail(@PathVariable String email){
         List<User> found = new ArrayList<>();
 

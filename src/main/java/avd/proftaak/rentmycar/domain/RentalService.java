@@ -23,7 +23,7 @@ public class RentalService extends User{
     @OneToMany(mappedBy = "costId")
     private Set<Cost> costs;
 
-    @OneToMany(mappedBy = "id")
+    @OneToMany
     private Set<Car> cars;
 
     public void AddCar(Car car)

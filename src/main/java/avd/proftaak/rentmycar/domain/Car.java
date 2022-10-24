@@ -20,8 +20,8 @@ import javax.persistence.*;
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "carid", nullable = false)
-    private Long id;
+    @Column(name = "carId", nullable = false)
+    private Long carId;
 
     private String brand;
     private String model;
@@ -35,6 +35,11 @@ public class Car {
 
     @OneToMany
     Set<Order> orders;
+
+    @ManyToOne
+    @JoinColumn
+    //@JoinColumn(name = "rentalserviceId", nullable = false)
+    private RentalService rentalService;
 
     //car constructor
     public Car(String model, String brand, int yearOfBuild, Integer kilometers, int numberOfDoors, double weight, CarCategories category, int numberOfSeats, String whereIsTheCar) {

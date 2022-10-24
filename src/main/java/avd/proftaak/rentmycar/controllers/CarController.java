@@ -91,17 +91,9 @@ public class CarController {
     }
 
     //Creates new car
-    @PostMapping("/{rentalServiceId}")
-    public ResponseEntity<Car> create(@PathVariable Long rentalServiceId, @RequestBody Car newCar){
-        var user = userRepository.findById(rentalServiceId);
-        if(user.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        var rentalService = (RentalService) user.get();
+    public ResponseEntity<Car> create(@RequestBody Car newCar){
         try{
             Car car = carRepository.save(newCar);
-            rentalService.AddCar(car);
             return new ResponseEntity<>(car, HttpStatus.CREATED);
         }catch (IllegalArgumentException e){
             log.info("Error creating new car " + newCar + e.getMessage());
