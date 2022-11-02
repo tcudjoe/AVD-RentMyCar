@@ -91,6 +91,7 @@ public class CarController {
     }
 
     //Creates new car
+    @PostMapping
     public ResponseEntity<Car> create(@RequestBody Car newCar){
         try{
             Car car = carRepository.save(newCar);

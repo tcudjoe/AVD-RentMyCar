@@ -29,12 +29,12 @@ class RentMyCarApplicationTests {
     @Autowired
     private CarService carService;
 
-    Car car1 = new Car("330i", "BMW", 2012, 220000, 5, 1499.00, CarCategories.ICE, 5, "somewhere");
-    Car car2 = new Car("XC60", "VOLVO", 2019, 95034, 5, 1799.00, CarCategories.BEV, 7, "somewhere");
+    Car car1 = new Car("330i", "BMW", 2012, 220000, 5, 1499.00, CarCategories.ICE, 5, "somewhere", 9859.99);
+    Car car2 = new Car("XC60", "VOLVO", 2019, 95034, 5, 1799.00, CarCategories.BEV, 7, "somewhere", 59999.00);
 
     Customer customer1 = new Customer("Tonny", "Klas", "test@gmail.com", "password", "0612345678");
 
-    RentalService rentalService1 = new RentalService("Jeremy", "Nasda", "jeremynasda@gmail.com", "password", "0612345678"/*, new HashSet<>(1), new HashSet<>(6000)*/);
+    RentalService rentalService1 = new RentalService("Jeremy", "Nasda", "jeremynasda@gmail.com", "password", "0612345678");
 
     @Test
     public void whenDeleteByIdFromRepository_thenDeletingShouldBeSuccessful() {

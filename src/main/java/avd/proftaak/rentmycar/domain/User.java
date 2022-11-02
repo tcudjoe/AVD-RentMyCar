@@ -15,12 +15,6 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="type", discriminatorType = DiscriminatorType.INTEGER)
-@JsonTypeInfo(use=JsonTypeInfo.Id.NAME, property = "userType")
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = Customer.class, name="CUSTOMER"),
-        @JsonSubTypes.Type(value = RentalService.class, name="RENTALSERVICE")
-})
 public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
