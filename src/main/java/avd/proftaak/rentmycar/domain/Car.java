@@ -22,7 +22,6 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "carId", nullable = false)
     private Long carId;
-
     private String brand;
     private String model;
     private int yearOfBuild;
