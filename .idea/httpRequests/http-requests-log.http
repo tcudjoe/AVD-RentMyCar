@@ -1,0 +1,80 @@
+GET http://localhost:8080/Orders/10
+
+<> 2022-10-22T083608.400.json
+
+###
+
+GET http://localhost:8080/Orders/6
+
+<> 2022-10-22T083120.400.json
+
+###
+
+GET http://localhost:8080/Orders/2
+
+<> 2022-10-22T083115.400.json
+
+###
+
+GET http://localhost:8080/Orders/1
+
+<> 2022-10-22T083106.400.json
+
+###
+
+GET http://localhost:8086/Orders
+
+<> 2022-10-22T082920.500.json
+
+###
+
+GET http://localhost:8086/Orders
+
+<> 2022-10-22T082747.500.json
+
+###
+
+GET http://localhost:8086/Orders
+
+<> 2022-10-22T082709.500.json
+
+###
+
+GET http://localhost:8086/Orders
+
+<> 2022-10-22T082639.500.json
+
+###
+
+GET http://localhost:8086/Orders
+
+<> 2022-10-21T092251.500.json
+
+###
+
+POST http://localhost:8086/Cars
+Content-Type: application/json
+
+{
+  "brand" : "BMW",
+  "model" : "318i",
+  "yearOfBuild" : 2012,
+  "kilometers" : 220483,
+  "numberOfDoors" : 5,
+  "weight" : 1499.00,
+  "fuelType" : 0,
+  "numberOfSeats" : 5,
+  "whereIsTheCar" : "-2.58225.-135.48059.1.00"
+}
+
+<> 2022-10-20T171047.500.json
+
+###
+
+POST http://localhost:8086/Cars
+Content-Type: application/json
+
+<> 2022-10-20T170353.400.json
+
+###
+
