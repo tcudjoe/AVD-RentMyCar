@@ -31,7 +31,6 @@ class CarAdapter(val context: Context) :  RecyclerView.Adapter<CarAdapter.CarVie
     override fun onBindViewHolder(holder: CarViewHolder, position: Int) {
         holder.view.model.text = cars[position].model
         holder.view.brand.text = cars[position].brand
-
     }
 
     override fun getItemCount() = cars.size
