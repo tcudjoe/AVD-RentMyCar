@@ -36,9 +36,9 @@ class HomeScreen : Fragment() {
             findNavController().navigate(R.id.action_homeScreen_to_FirstFragment)
         }
 
-//        binding.buttonVerhuurder2.setOnClickListener{
-//            findNavController().navigate(R.id.)
-//        }
+        binding.buttonVerhuurder.setOnClickListener{
+            findNavController().navigate(R.id.action_homeScreen_to_verhuurderScreen)
+        }
     }
 
     override fun onDestroyView() {
