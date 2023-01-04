@@ -46,6 +46,10 @@ class CarListFragment : Fragment() {
         binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
+
+        binding.backButtonHuurder.setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_homeScreen)
+        }
     }
 
     override fun onDestroyView() {

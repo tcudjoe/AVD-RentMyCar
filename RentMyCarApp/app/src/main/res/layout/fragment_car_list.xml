@@ -18,5 +18,17 @@
         android:text="@string/next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.312"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/backButton_huurder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="96dp"
+        android:text="@string/verhuurder_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/car_item_list"
+        app:layout_constraintStart_toEndOf="@+id/button_first" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,6 @@
+{
+  "timestamp": "2022-10-20T15:10:47.636+00:00",
+  "status": 500,
+  "error": "Internal Server Error",
+  "path": "/Cars"
+}

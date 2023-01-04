@@ -1,0 +1,8 @@
+{
+  "dateTime": "2022-10-22T08:31:20.300159",
+  "status": "BAD_REQUEST",
+  "message": "Error validatiing OAuth2 credentials ",
+  "errors": [
+    "Custom Error Message"
+  ]
+}
