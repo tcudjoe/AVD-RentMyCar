@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_FirstFragment_to_homeScreen"
             app:destination="@id/homeScreen" />
+        <action
+            android:id="@+id/action_FirstFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -46,5 +49,14 @@
         <action
             android:id="@+id/action_verhuurderScreen_to_homeScreen"
             app:destination="@id/homeScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.listapitest.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
     </fragment>
 </navigation>

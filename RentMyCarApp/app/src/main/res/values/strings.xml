@@ -11,4 +11,5 @@
     <string name="verhuurder_button">Verhuurder</string>
     <string name="app_logo">app logo</string>
     <string name="verhuurder_back">back</string>
+    <string name="map_button">map</string>
 </resources>
