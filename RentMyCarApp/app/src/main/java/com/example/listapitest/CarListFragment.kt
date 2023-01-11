@@ -2,16 +2,19 @@ package com.example.listapitest
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.listapitest.databinding.FragmentCarListBinding
 import kotlinx.android.synthetic.main.fragment_car_list.*
+import kotlinx.android.synthetic.main.list_item.view.*
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -27,11 +30,8 @@ class CarListFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
+        savedInstanceState: Bundle?): View? {
         _binding = FragmentCarListBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -46,6 +46,14 @@ class CarListFragment : Fragment() {
         binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
+
+        binding.maxCostInput.addTextChangedListener {
+            getCars()
+        }
+
+        binding.maxKilometersInput.addTextChangedListener {
+            getCars()
+        }
     }
 
     override fun onDestroyView() {
@@ -55,12 +63,32 @@ class CarListFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.refresh -> {
-            adapter.refreshCars()
+            getCars()
             Toast.makeText(this.baseContext, "Refreshed", Toast.LENGTH_LONG).show()
             true
         }
         else -> {
             super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun getCars()
+    {
+        Log.d("TAG", getMaxKilometers().toString())
+        Log.d("TAG", getMaxCost().toString())
+
+        adapter.getCars(getMaxKilometers(), getMaxCost())
+    }
+
+    private fun getMaxKilometers() : Int?
+    {
+        var maxKilometersString = max_kilometers_input.text.toString();
+        return maxKilometersString.toIntOrNull();
+    }
+
+    private fun getMaxCost() : Double?
+    {
+        var maxCostString = max_cost_input.text.toString();
+        return maxCostString.toDoubleOrNull();
     }
 }

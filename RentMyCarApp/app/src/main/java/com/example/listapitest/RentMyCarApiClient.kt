@@ -7,10 +7,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
 interface RentMyCarApiClient {
-    @GET("cars") fun getCars(): Observable<ArrayList<Car>>
+    @GET("cars")
+    fun getCars(@Query("maxKilometers") kilometers:Int?, @Query("maxCost") cost:Double?): Observable<ArrayList<Car>>
 
     companion object {
-
         fun create(): RentMyCarApiClient {
 
             val retrofit = Retrofit.Builder()

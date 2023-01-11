@@ -15,7 +15,7 @@ class CarAdapter(val context: Context) :  RecyclerView.Adapter<CarAdapter.CarVie
     val client by lazy { RentMyCarApiClient.create() }
     var cars: ArrayList<Car> = ArrayList()
 
-    init { refreshCars() }
+    init { getCars(null, null) }
 
     class CarViewHolder(val view: View) : RecyclerView.ViewHolder(view)
 
@@ -31,13 +31,14 @@ class CarAdapter(val context: Context) :  RecyclerView.Adapter<CarAdapter.CarVie
     override fun onBindViewHolder(holder: CarViewHolder, position: Int) {
         holder.view.model.text = cars[position].model
         holder.view.brand.text = cars[position].brand
-
+        holder.view.cost.text = cars[position].cost.toString()
+        holder.view.kilometers.text = cars[position].kilometers.toString()
     }
 
     override fun getItemCount() = cars.size
 
-    fun refreshCars() {
-        client.getCars()
+    fun getCars(kilometers: Int?, cost: Double?) {
+        client.getCars(kilometers, cost)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ result ->
