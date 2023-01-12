@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CarListFragment">
+    tools:context=".CarRentalsOverview">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="max kilometers"
+            android:hint="@string/max_kilometers"
             android:inputType="number"
             />
 
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="max cost"
+            android:hint="@string/max_cost"
             android:inputType="number" />
     </LinearLayout>
 

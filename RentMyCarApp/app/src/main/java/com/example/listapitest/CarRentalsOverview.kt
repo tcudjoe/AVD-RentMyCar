@@ -2,7 +2,6 @@ package com.example.listapitest
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -12,26 +11,20 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.listapitest.databinding.FragmentCarListBinding
-import kotlinx.android.synthetic.main.fragment_car_list.*
-import kotlinx.android.synthetic.main.list_item.view.*
+import com.example.listapitest.databinding.CarRentalsOverviewBinding
+import kotlinx.android.synthetic.main.car_rentals_overview.*
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
-class CarListFragment : Fragment() {
+class CarRentalsOverview : Fragment() {
 
-    private var _binding: FragmentCarListBinding? = null
+    private var _binding: CarRentalsOverviewBinding? = null
     lateinit var adapter:CarAdapter
     private var baseContext:Context? = null
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
-        _binding = FragmentCarListBinding.inflate(inflater, container, false)
+        _binding = CarRentalsOverviewBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -44,7 +37,7 @@ class CarListFragment : Fragment() {
         car_item_list.adapter = adapter
 
         binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            findNavController().navigate(R.id.car_rentals_overview_to_home_screen)
         }
 
         binding.maxCostInput.addTextChangedListener {

@@ -2,9 +2,15 @@
     <string name="app_name">ListApiTest</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="refresh">Refresh</string>
+    <string name="buttonhuurder">Huurder</string>
+    <string name="verhuurder_button">Verhuurder</string>
+    <string name="app_logo">app logo</string>
+    <string name="verhuurder_back">back</string>
+    <string name="max_cost">max cost</string>
+    <string name="max_kilometers">max kilometers</string>
+    <string name="i_am_a_rental_service">I am a rental service</string>
+    <string name="i_am_a_customer">I am a customer</string>
 </resources>

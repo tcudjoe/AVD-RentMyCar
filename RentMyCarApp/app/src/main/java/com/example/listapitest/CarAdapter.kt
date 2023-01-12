@@ -9,13 +9,13 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.list_item.view.*
+import kotlinx.android.synthetic.main.car_list_item.view.*
 
 class CarAdapter(val context: Context) :  RecyclerView.Adapter<CarAdapter.CarViewHolder>() {
     val client by lazy { RentMyCarApiClient.create() }
     var cars: ArrayList<Car> = ArrayList()
 
-    init { getCars("", "") }
+    init { getCars() }
 
     class CarViewHolder(val view: View) : RecyclerView.ViewHolder(view)
 
@@ -23,7 +23,7 @@ class CarAdapter(val context: Context) :  RecyclerView.Adapter<CarAdapter.CarVie
                                     viewType: Int): CarAdapter.CarViewHolder {
 
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_item, parent, false)
+            .inflate(R.layout.car_list_item, parent, false)
 
         return CarViewHolder(view)
     }
@@ -37,15 +37,11 @@ class CarAdapter(val context: Context) :  RecyclerView.Adapter<CarAdapter.CarVie
 
     override fun getItemCount() = cars.size
 
-    fun getCars(kilometers: String, cost: String) {
+    fun getCars(kilometers: String = "", cost: String = "") {
         client.getCars(kilometers, cost)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ result ->
-                println("test");
-
-                println(result);
-
                 cars.clear()
                 if(result.isNotEmpty()) {
                     cars.addAll(result)

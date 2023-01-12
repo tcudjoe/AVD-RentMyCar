@@ -6,33 +6,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.listapitest.databinding.FragmentSecondBinding
+import com.example.listapitest.databinding.HomescreenBinding
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
-class SecondFragment : Fragment() {
 
-    private var _binding: FragmentSecondBinding? = null
+class HomeScreen : Fragment() {
+    private var _binding: HomescreenBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
+
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
 
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+    ): View? {
+        _binding = HomescreenBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+        binding.buttonRentals.setOnClickListener {
+            findNavController().navigate(R.id.action_home_screen_to_car_rentals_overview)
         }
     }
 
