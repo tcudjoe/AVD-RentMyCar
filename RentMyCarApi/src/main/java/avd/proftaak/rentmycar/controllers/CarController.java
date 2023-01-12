@@ -34,21 +34,12 @@ public class CarController {
     //Gets all cars based on the model
     @GetMapping
     public ResponseEntity<List<Car>> getAll(
-        @RequestParam(required = false, name = "maxKilometers") Integer maxKilometers,
-        @RequestParam(required = false, name = "maxCost") Double maxCost)
+        @RequestParam(required = false) Integer maxKilometers,
+        @RequestParam(required = false) Double maxCost)
     {
         List<Car> found = new ArrayList<>();
 
-        if(maxKilometers == null && maxCost == null)
-        {
-            found.addAll(carRepository.findAll());
-        }
-        else {
-            found.addAll(carRepository.customFindCars(maxKilometers, maxCost));
-        }
-        if (found.isEmpty()){
-            return ResponseEntity.noContent().build();
-        }
+        found.addAll(carRepository.customFindCars(maxKilometers, maxCost));
 
         return ResponseEntity.ok(found);
     }

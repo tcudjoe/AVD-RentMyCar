@@ -74,21 +74,6 @@ class CarListFragment : Fragment() {
 
     private fun getCars()
     {
-        Log.d("TAG", getMaxKilometers().toString())
-        Log.d("TAG", getMaxCost().toString())
-
-        adapter.getCars(getMaxKilometers(), getMaxCost())
-    }
-
-    private fun getMaxKilometers() : Int?
-    {
-        var maxKilometersString = max_kilometers_input.text.toString();
-        return maxKilometersString.toIntOrNull();
-    }
-
-    private fun getMaxCost() : Double?
-    {
-        var maxCostString = max_cost_input.text.toString();
-        return maxCostString.toDoubleOrNull();
+        adapter.getCars(max_kilometers_input.text.toString(), max_cost_input.text.toString())
     }
 }

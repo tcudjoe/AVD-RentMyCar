@@ -15,7 +15,7 @@ class CarAdapter(val context: Context) :  RecyclerView.Adapter<CarAdapter.CarVie
     val client by lazy { RentMyCarApiClient.create() }
     var cars: ArrayList<Car> = ArrayList()
 
-    init { getCars(null, null) }
+    init { getCars("", "") }
 
     class CarViewHolder(val view: View) : RecyclerView.ViewHolder(view)
 
@@ -37,17 +37,25 @@ class CarAdapter(val context: Context) :  RecyclerView.Adapter<CarAdapter.CarVie
 
     override fun getItemCount() = cars.size
 
-    fun getCars(kilometers: Int?, cost: Double?) {
+    fun getCars(kilometers: String, cost: String) {
         client.getCars(kilometers, cost)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ result ->
+                println("test");
+
+                println(result);
+
                 cars.clear()
-                cars.addAll(result)
+                if(result.isNotEmpty()) {
+                    cars.addAll(result)
+                }
                 notifyDataSetChanged()
             },{ error ->
                 Toast.makeText(context, "Refresh error: ${error.message}", Toast.LENGTH_LONG).show()
                 Log.e("ERRORS", error.message.toString())
+                Log.e("ERRORS2", error.toString())
+
             })
     }
 }
