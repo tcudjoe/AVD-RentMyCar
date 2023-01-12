@@ -33,61 +33,21 @@ public class CarController {
 
     //Gets all cars based on the model
     @GetMapping
-    public ResponseEntity<List<Car>> getAll(@RequestParam(required = false) String model){
+    public ResponseEntity<List<Car>> getAll(
+        @RequestParam(required = false) Integer maxKilometers,
+        @RequestParam(required = false) Double maxCost)
+    {
         List<Car> found = new ArrayList<>();
-        if (model == null){
-            found.addAll(carRepository.findAll());
-        }else {
-            found.addAll(carRepository.findCarByModelIgnoreCase(model));
-        }
 
-        if (found.isEmpty()){
-            return ResponseEntity.noContent().build();
-        }
+        found.addAll(carRepository.customFindCars(maxKilometers, maxCost));
 
         return ResponseEntity.ok(found);
     }
 
-    //Gets all cars based on id
+    //Gets a car by its id
     @GetMapping("/{carId}")
     public Optional<Car> getById(@PathVariable Long carId){
         return carRepository.findById(carId);
-    }
-
-    //Gets all cars based on brand
-    @GetMapping("/{brand}")
-    public ResponseEntity<List<Car>> getByBrand(@PathVariable String brand){
-        List<Car> found = new ArrayList<>();
-
-        if (brand == null){
-            found.addAll(carRepository.findAll());
-        }else {
-            found.addAll(carRepository.findCarByBrandIgnoreCase(brand));
-        }
-
-        if (found.isEmpty()){
-            return ResponseEntity.noContent().build();
-        }
-
-        return ResponseEntity.ok(found);
-    }
-
-    //Gets all cars based on kilometers
-    @GetMapping("/{kilometers}")
-    public ResponseEntity<List<Car>> getByKilometers(@PathVariable Integer kilometers){
-        List<Car> found = new ArrayList<>();
-
-        if (kilometers == null){
-            found.addAll(carRepository.findAll());
-        }else {
-            found.addAll(carRepository.findCarByKilometersContaining(kilometers));
-        }
-
-        if (found.isEmpty()){
-            return ResponseEntity.noContent().build();
-        }
-
-        return ResponseEntity.ok(found);
     }
 
     //Creates new car
