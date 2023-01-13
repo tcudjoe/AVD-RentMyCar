@@ -13,6 +13,9 @@ interface RentMyCarApiClient {
     @GET("cars")
     fun getCars(@Query("maxKilometers") kilometers:String, @Query("maxCost") cost:String): Observable<ArrayList<Car>>
 
+    @POST("cars")
+    fun addCar(@Body car: Car): Observable<Car>
+
     companion object {
         fun create(): RentMyCarApiClient {
 
