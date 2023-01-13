@@ -8,13 +8,8 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.listapitest.databinding.HomescreenBinding
 
-
 class HomeScreen : Fragment() {
     private var _binding: HomescreenBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -29,7 +24,11 @@ class HomeScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonRentals.setOnClickListener {
+        binding.buttonService.setOnClickListener {
+            findNavController().navigate(R.id.action_home_screen_to_car_service_overview)
+        }
+
+        binding.buttonCustomer.setOnClickListener {
             findNavController().navigate(R.id.action_home_screen_to_car_rentals_overview)
         }
     }

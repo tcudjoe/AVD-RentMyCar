@@ -1,8 +1,11 @@
 package com.example.listapitest
 
 data class Car(
-    val carId: Int,
-    val model: String,
     val brand: String,
-    val cost: Double,
-    val kilometers: Integer)
+    val model: String,
+    val yearOfBuild: Int,
+    val kilometers: Int,
+    val weight: Double,
+    val category: String,
+    val location: String,
+    val cost: Double)

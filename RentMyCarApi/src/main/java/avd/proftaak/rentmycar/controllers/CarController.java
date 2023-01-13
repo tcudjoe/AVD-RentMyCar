@@ -1,8 +1,10 @@
 package avd.proftaak.rentmycar.controllers;
 
+import avd.proftaak.rentmycar.controllers.dto.Order;
 import avd.proftaak.rentmycar.domain.RentalService;
 import avd.proftaak.rentmycar.domain.User;
 import avd.proftaak.rentmycar.repository.UserRepository;
+import avd.proftaak.rentmycar.services.CarService;
 import lombok.extern.slf4j.Slf4j;
 
 import avd.proftaak.rentmycar.domain.Car;
@@ -24,11 +26,13 @@ import java.util.Optional;
 public class CarController {
     private final CarRepository carRepository;
     private final UserRepository userRepository;
+    private final CarService carService;
 
     @Autowired
-    public CarController(CarRepository carRepository, UserRepository userRepository) {
+    public CarController(CarRepository carRepository, UserRepository userRepository, CarService carService) {
         this.carRepository = carRepository;
         this.userRepository = userRepository;
+        this.carService = carService;
     }
 
     //Gets all cars based on the model
@@ -51,6 +55,7 @@ public class CarController {
     }
 
     //Creates new car
+    @PostMapping
     public ResponseEntity<Car> create(@RequestBody Car newCar){
         try{
             Car car = carRepository.save(newCar);

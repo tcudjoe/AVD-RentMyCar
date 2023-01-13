@@ -11,11 +11,14 @@
         android:label="HomeScreen" >
         <action
             android:id="@+id/action_home_screen_to_car_rentals_overview"
-            app:destination="@id/CarRentalsOverview" />
+            app:destination="@id/car_rentals_overview" />
+        <action
+            android:id="@+id/action_home_screen_to_car_service_overview"
+            app:destination="@id/car_service_overview" />
     </fragment>
 
     <fragment
-        android:id="@+id/CarRentalsOverview"
+        android:id="@+id/car_rentals_overview"
         android:name="com.example.listapitest.CarRentalsOverview"
         android:label="Car rentals overview"
         tools:layout="@layout/car_rentals_overview">
@@ -23,5 +26,31 @@
         <action
             android:id="@+id/car_rentals_overview_to_home_screen"
             app:destination="@id/home_screen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/car_service_overview"
+        android:name="com.example.listapitest.CarServiceOverview"
+        android:label="Car rentals overview"
+        tools:layout="@layout/car_service_overview">
+
+        <action
+            android:id="@+id/car_service_overview_to_home_screen"
+            app:destination="@id/home_screen" />
+
+        <action
+            android:id="@+id/car_service_overview_to_add_car"
+            app:destination="@id/car_add" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/car_add"
+        android:name="com.example.listapitest.CarAdd"
+        android:label="Add a car"
+        tools:layout="@layout/car_add">
+
+        <action
+            android:id="@+id/car_add_to_car_service_overview"
+            app:destination="@id/car_service_overview" />
     </fragment>
 </navigation>

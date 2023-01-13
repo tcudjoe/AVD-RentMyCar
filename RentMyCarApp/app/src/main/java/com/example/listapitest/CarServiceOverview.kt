@@ -8,15 +8,14 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.listapitest.databinding.CarRentalsOverviewBinding
-import kotlinx.android.synthetic.main.car_rentals_overview.*
+import com.example.listapitest.databinding.CarServiceOverviewBinding
+import kotlinx.android.synthetic.main.car_service_overview.*
 
-class CarRentalsOverview : Fragment() {
+class CarServiceOverview : Fragment() {
 
-    private var _binding: CarRentalsOverviewBinding? = null
+    private var _binding: CarServiceOverviewBinding? = null
     lateinit var adapter:CarAdapter
     private var baseContext:Context? = null
     private val binding get() = _binding!!
@@ -24,7 +23,7 @@ class CarRentalsOverview : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
-        _binding = CarRentalsOverviewBinding.inflate(inflater, container, false)
+        _binding = CarServiceOverviewBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -32,16 +31,11 @@ class CarRentalsOverview : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         baseContext = view.context
         adapter = CarAdapter(view.context)
-
         car_item_list.layoutManager = LinearLayoutManager(view.context)
         car_item_list.adapter = adapter
 
-        binding.maxCostInput.addTextChangedListener {
-            getCars()
-        }
-
-        binding.maxKilometersInput.addTextChangedListener {
-            getCars()
+        binding.buttonAddCar.setOnClickListener {
+            findNavController().navigate(R.id.car_service_overview_to_add_car)
         }
     }
 
@@ -52,17 +46,12 @@ class CarRentalsOverview : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.refresh -> {
-            getCars()
+            adapter.getCars()
             Toast.makeText(this.baseContext, "Refreshed", Toast.LENGTH_LONG).show()
             true
         }
         else -> {
             super.onOptionsItemSelected(item)
         }
-    }
-
-    private fun getCars()
-    {
-        adapter.getCars(max_kilometers_input.text.toString(), max_cost_input.text.toString())
     }
 }

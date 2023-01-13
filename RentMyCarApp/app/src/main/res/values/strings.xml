@@ -13,4 +13,6 @@
     <string name="max_kilometers">max kilometers</string>
     <string name="i_am_a_rental_service">I am a rental service</string>
     <string name="i_am_a_customer">I am a customer</string>
+    <string name="add_car">add car</string>
+    <string name="homescreen">homescreen</string>
 </resources>
