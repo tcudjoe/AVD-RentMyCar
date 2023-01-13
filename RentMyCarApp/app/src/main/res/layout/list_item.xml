@@ -34,6 +34,13 @@
             android:padding="5dp"
             android:text="brand"
             android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/whereIsTheCar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
