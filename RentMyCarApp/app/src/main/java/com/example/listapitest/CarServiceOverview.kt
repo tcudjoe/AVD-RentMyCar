@@ -37,6 +37,10 @@ class CarServiceOverview : Fragment() {
         binding.buttonAddCar.setOnClickListener {
             findNavController().navigate(R.id.car_service_overview_to_add_car)
         }
+
+        binding.buttonTakePhoto.setOnClickListener {
+            findNavController().navigate(R.id.car_service_overview_to_take_photo)
+        }
     }
 
     override fun onDestroyView() {
