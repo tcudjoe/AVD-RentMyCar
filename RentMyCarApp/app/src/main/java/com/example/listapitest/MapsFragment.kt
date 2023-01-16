@@ -1,52 +1,64 @@
 package com.example.listapitest
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.location.Location
+import android.os.Build
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
+import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.core.app.ActivityCompat
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 
 import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.*
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
+import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
+import com.google.android.gms.location.*
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
+import com.google.maps.android.clustering.ClusterManager
 
-class MapsFragment : Fragment() {
+
+class MapsFragment : FragmentActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
 
-    private val callback = OnMapReadyCallback { googleMap ->
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+    private val cars: List<Car> by lazy {
+        MapReader(this).read()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_maps, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_maps)
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        val mapFragment = supportFragmentManager
+            .findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        mapFragment?.getMapAsync(callback)
-    }
-
-    fun onMapReady(googleMap: GoogleMap) {
+    /**
+     * Manipulates the map once available.
+     * This callback is triggered when the map is ready to be used.
+     * This is where we can add markers or lines, add listeners or move the camera. In this case,
+     * we just add a marker near Sydney, Australia.
+     * If Google Play services is not installed on the device, the user will be prompted to install
+     * it inside the SupportMapFragment. This method will only be triggered once the user has
+     * installed Google Play services and returned to the app.
+     */
+    override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
 
@@ -64,7 +76,7 @@ class MapsFragment : Fragment() {
 
             marker.tag = clickCount
 
-//            Toast.makeText(this, "${marker.title} is $clickCount aangeklikt", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "${marker.title} is $clickCount aangeklikt", Toast.LENGTH_SHORT).show()
             true
         }
 
@@ -119,43 +131,118 @@ class MapsFragment : Fragment() {
 
 
 //        addMarkers(mMap)
-//        addClusterdMarkers()
+        addClusterdMarkers()
 //
         // camera position depending on Clustered markers:
         // setOnMapLoadedCallback: Sets a callback that's invoked when this map has finished rendering.
-//        mMap.setOnMapLoadedCallback {
-//            val bounds = LatLngBounds.builder()
-//            blindwalls.forEach { blindWall ->
-//                bounds.include(blindWall.latLng)
-//            }
-//            mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 50))
-//        }
-//
-//        mMap.setInfoWindowAdapter(BlindWallMarkerAdapter(this))
+        mMap.setOnMapLoadedCallback {
+            val bounds = LatLngBounds.builder()
+            cars.forEach { car ->
+                bounds.include(car.latLng)
+            }
+            mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 50))
+        }
+
+        mMap.setInfoWindowAdapter(CarAdapter(this))
 
 
     }
 
     // wordt na het maken van clustered items miet meer benut.
-//    private fun addMarkers() {
-//        blindwalls.forEach { blindWall ->
-//            val marker = mMap.addMarker(
-//                MarkerOptions()
-//                    .title(blindWall.name)
-//                    .position(blindWall.latLng)
-//            )
-//            marker?.tag = blindWall
+    private fun addMarkers() {
+        cars.forEach { cars ->
+            val marker = mMap.addMarker(
+                MarkerOptions()
+                    .title(cars.model)
+                    .position(cars.latLng)
+            )
+            marker?.tag = cars
+        }
+    }
+
+    private fun addClusterdMarkers() {
+        val clusterManager = ClusterManager<Car>(this, mMap)
+        clusterManager.addItems(cars)
+        clusterManager.cluster()
+
+        mMap.setOnCameraIdleListener {
+            clusterManager.onCameraIdle()
+        }
+    }
+
+//    private val permissionCode = 101
+//    var mGoogleMap: GoogleMap? = null
+//    var coordinates = MutableLiveData<List<Car>>()
+//    private lateinit var currentLocation: Location
+////    private val viewModel: CarAdapter by CarAdapter.CarViewHolder()
+//    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+//    private val viewModel: MapsFragment by lazy {viewModels(MapsFragment::class)}
+//
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_main)
+//        fusedLocationProviderClient =  LocationServices.getFusedLocationProviderClient(this@MapsFragment)
+//        fetchLocation()
+//
+//        viewModel.coordinates.observe(this, Observer {
+//            // Clear previous markers:
+//            mGoogleMap?.clear()
+//
+//            // Place all current markers:
+//                it.forEach { car ->
+//                val latLng = LatLng(car.latitude, car.longitude)
+//                val markerOptions = MarkerOptions()
+//                markerOptions.position(latLng)
+//                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))
+//
+//                val marker = mGoogleMap?.addMarker(markerOptions)
+//            }
+//        })
+//    }
+//
+//    private fun fetchLocation() {
+//        if (ActivityCompat.checkSelfPermission(
+//                this, Manifest.permission.ACCESS_FINE_LOCATION) !=
+//            PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+//                this, Manifest.permission.ACCESS_COARSE_LOCATION) !=
+//            PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this,
+//                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), permissionCode)
+//            return
+//        }
+//
+//        val task = fusedLocationProviderClient.lastLocation
+//        task.addOnSuccessListener {
+//            location ->; if (location != null) {
+//                currentLocation = location
+//                Toast.makeText(applicationContext, currentLocation.latitude.toString() + "" +
+//                        currentLocation.longitude, Toast.LENGTH_SHORT).show()
+//                val supportMapFragment = (supportFragmentManager.findFragmentById(R.id.map) as
+//                        SupportMapFragment?)!!
+//                supportMapFragment.getMapAsync(this@MapsFragment)
+//            }
 //        }
 //    }
 //
-//    private fun addClusterdMarkers() {
-//        val clusterManager = ClusterManager<>(this, mMap)
-//        clusterManager.addItems(blindwalls)
-//        clusterManager.cluster()
+//    override fun onMapReady(mMap: GoogleMap) {
+//        val latLng = LatLng(currentLocation.latitude, currentLocation.longitude)
+//            val markerOptions = MarkerOptions().position(latLng).title("Current location")
+//        mMap?.animateCamera(CameraUpdateFactory.newLatLng(latLng))
+//        mMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5f))
+//        mMap?.addMarker(markerOptions)
+//    }
 //
-//        mMap.setOnCameraIdleListener {
-//            clusterManager.onCameraIdle()
+//    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>,
+//                                            grantResults: IntArray) {
+//            when (requestCode) {
+//                permissionCode -> if (grantResults.isNotEmpty() && grantResults[0] ==
+//                PackageManager.PERMISSION_GRANTED) {
+//                fetchLocation()
+//            }
 //        }
 //    }
+}
+
+private fun Any.setInfoWindowAdapter(carAdapter: CarAdapter) {
 
 }

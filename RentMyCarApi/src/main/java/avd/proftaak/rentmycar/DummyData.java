@@ -21,9 +21,9 @@ public class DummyData {
     @Bean
     CommandLineRunner initDatabase(CarRepository carRepository, UserRepository userRepository, OrderRepository orderRepository) {
         return args -> {
-            Car car1 = new Car("330i", "BMW", 2012, 220000, 5, 1499.00, CarCategories.ICE, 5, "32.78160, -104.78606", 9859.99);
-            Car car2 = new Car("XC60", "VOLVO", 2019, 95034, 5, 1799.00, CarCategories.BEV, 7, "59.37731, 66.75150", 59999.00);
-            Car car3 = new Car("GTI", "VOLKSWAGEN", 2020, 55908, 3, 1299.00, CarCategories.FCEV, 5, "27.85155, 38.76448", 20);
+            Car car1 = new Car("330i", "BMW", 2012, 220000, 5, 1499.00, CarCategories.ICE, 5, 32.78160, -104.78606, 9859.99, "32.78160, -104.78606");
+            Car car2 = new Car("XC60", "VOLVO", 2019, 95034, 5, 1799.00, CarCategories.BEV, 7, 59.37731, 66.75150, 59999.00, "59.37731, 66.75150");
+            Car car3 = new Car("GTI", "VOLKSWAGEN", 2020, 55908, 3, 1299.00, CarCategories.FCEV, 5, 27.85155, 38.76448, 20, "27.85155, 38.76448");
 
             log.info("Preloading... " + carRepository.save(car1));
             log.info("Preloading... " + carRepository.save(car2));
