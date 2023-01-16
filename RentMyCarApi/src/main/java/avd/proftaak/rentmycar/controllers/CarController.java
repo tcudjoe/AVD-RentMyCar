@@ -1,8 +1,10 @@
 package avd.proftaak.rentmycar.controllers;
 
+import avd.proftaak.rentmycar.controllers.dto.Order;
 import avd.proftaak.rentmycar.domain.RentalService;
 import avd.proftaak.rentmycar.domain.User;
 import avd.proftaak.rentmycar.repository.UserRepository;
+import avd.proftaak.rentmycar.services.CarService;
 import lombok.extern.slf4j.Slf4j;
 
 import avd.proftaak.rentmycar.domain.Car;
@@ -24,73 +26,36 @@ import java.util.Optional;
 public class CarController {
     private final CarRepository carRepository;
     private final UserRepository userRepository;
+    private final CarService carService;
 
     @Autowired
-    public CarController(CarRepository carRepository, UserRepository userRepository) {
+    public CarController(CarRepository carRepository, UserRepository userRepository, CarService carService) {
         this.carRepository = carRepository;
         this.userRepository = userRepository;
+        this.carService = carService;
     }
 
     //Gets all cars based on the model
     @GetMapping
-    public ResponseEntity<List<Car>> getAll(@RequestParam(required = false) String model){
+    public ResponseEntity<List<Car>> getAll(
+        @RequestParam(required = false) Integer maxKilometers,
+        @RequestParam(required = false) Double maxCost)
+    {
         List<Car> found = new ArrayList<>();
-        if (model == null){
-            found.addAll(carRepository.findAll());
-        }else {
-            found.addAll(carRepository.findCarByModelIgnoreCase(model));
-        }
 
-        if (found.isEmpty()){
-            return ResponseEntity.noContent().build();
-        }
+        found.addAll(carRepository.customFindCars(maxKilometers, maxCost));
 
         return ResponseEntity.ok(found);
     }
 
-    //Gets all cars based on id
+    //Gets a car by its id
     @GetMapping("/{carId}")
     public Optional<Car> getById(@PathVariable Long carId){
         return carRepository.findById(carId);
     }
 
-    //Gets all cars based on brand
-    @GetMapping("/{brand}")
-    public ResponseEntity<List<Car>> getByBrand(@PathVariable String brand){
-        List<Car> found = new ArrayList<>();
-
-        if (brand == null){
-            found.addAll(carRepository.findAll());
-        }else {
-            found.addAll(carRepository.findCarByBrandIgnoreCase(brand));
-        }
-
-        if (found.isEmpty()){
-            return ResponseEntity.noContent().build();
-        }
-
-        return ResponseEntity.ok(found);
-    }
-
-    //Gets all cars based on kilometers
-    @GetMapping("/{kilometers}")
-    public ResponseEntity<List<Car>> getByKilometers(@PathVariable Integer kilometers){
-        List<Car> found = new ArrayList<>();
-
-        if (kilometers == null){
-            found.addAll(carRepository.findAll());
-        }else {
-            found.addAll(carRepository.findCarByKilometersContaining(kilometers));
-        }
-
-        if (found.isEmpty()){
-            return ResponseEntity.noContent().build();
-        }
-
-        return ResponseEntity.ok(found);
-    }
-
     //Creates new car
+    @PostMapping
     public ResponseEntity<Car> create(@RequestBody Car newCar){
         try{
             Car car = carRepository.save(newCar);

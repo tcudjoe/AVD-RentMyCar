@@ -6,38 +6,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.listapitest.databinding.FragmentHomescreenBinding
-import com.example.listapitest.databinding.FragmentSecondBinding
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
+import com.example.listapitest.databinding.HomescreenBinding
+
 class HomeScreen : Fragment() {
-
-    private var _binding: FragmentHomescreenBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private var _binding: HomescreenBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        _binding = FragmentHomescreenBinding.inflate(inflater, container, false)
+        _binding = HomescreenBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonHuurder.setOnClickListener {
-            findNavController().navigate(R.id.action_homeScreen_to_FirstFragment)
+        binding.buttonService.setOnClickListener {
+            findNavController().navigate(R.id.action_home_screen_to_car_service_overview)
         }
 
-        binding.buttonVerhuurder.setOnClickListener{
-            findNavController().navigate(R.id.action_homeScreen_to_verhuurderScreen)
+        binding.buttonCustomer.setOnClickListener {
+            findNavController().navigate(R.id.action_home_screen_to_car_rentals_overview)
         }
     }
 

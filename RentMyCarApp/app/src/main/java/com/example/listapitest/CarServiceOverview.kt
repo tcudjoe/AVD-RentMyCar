@@ -10,28 +10,20 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.listapitest.databinding.FragmentCarListBinding
-import kotlinx.android.synthetic.main.fragment_car_list.*
+import com.example.listapitest.databinding.CarServiceOverviewBinding
+import kotlinx.android.synthetic.main.car_service_overview.*
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
-class CarListFragment : Fragment() {
+class CarServiceOverview : Fragment() {
 
-    private var _binding: FragmentCarListBinding? = null
+    private var _binding: CarServiceOverviewBinding? = null
     lateinit var adapter:CarAdapter
     private var baseContext:Context? = null
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        _binding = FragmentCarListBinding.inflate(inflater, container, false)
-
+        savedInstanceState: Bundle?): View? {
+        _binding = CarServiceOverviewBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -39,20 +31,11 @@ class CarListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         baseContext = view.context
         adapter = CarAdapter(view.context)
-
         car_item_list.layoutManager = LinearLayoutManager(view.context)
         car_item_list.adapter = adapter
 
-        binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-        }
-
-        binding.backButtonHuurder.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_homeScreen)
-        }
-
-        binding.buttonMap.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_mapsFragment)
+        binding.buttonAddCar.setOnClickListener {
+            findNavController().navigate(R.id.car_service_overview_to_add_car)
         }
     }
 
@@ -63,7 +46,7 @@ class CarListFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.refresh -> {
-            adapter.refreshCars()
+            adapter.getCars()
             Toast.makeText(this.baseContext, "Refreshed", Toast.LENGTH_LONG).show()
             true
         }

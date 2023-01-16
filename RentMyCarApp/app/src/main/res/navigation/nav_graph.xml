@@ -3,52 +3,61 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeScreen">
+    app:startDestination="@id/home_screen">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.listapitest.CarListFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_car_list">
-
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-        <action
-            android:id="@+id/action_FirstFragment_to_homeScreen"
-            app:destination="@id/homeScreen" />
-        <action
-            android:id="@+id/action_FirstFragment_to_mapsFragment"
-            app:destination="@id/mapsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.listapitest.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/homeScreen"
+        android:id="@+id/home_screen"
         android:name="com.example.listapitest.HomeScreen"
         android:label="HomeScreen" >
         <action
-            android:id="@+id/action_homeScreen_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_home_screen_to_car_rentals_overview"
+            app:destination="@id/car_rentals_overview" />
         <action
-            android:id="@+id/action_homeScreen_to_verhuurderScreen"
-            app:destination="@id/verhuurderScreen" />
+            android:id="@+id/action_home_screen_to_car_service_overview"
+            app:destination="@id/car_service_overview" />
+        <action
+            android:id="@+id/action_home_screen_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/verhuurderScreen"
-        android:name="com.example.listapitest.VerhuurderScreen"
-        android:label="VerhuurderScreen" >
+        android:id="@+id/car_rentals_overview"
+        android:name="com.example.listapitest.CarRentalsOverview"
+        android:label="Car rentals overview"
+        tools:layout="@layout/car_rentals_overview">
+
         <action
-            android:id="@+id/action_verhuurderScreen_to_homeScreen"
-            app:destination="@id/homeScreen" />
+            android:id="@+id/car_rentals_overview_to_home_screen"
+            app:destination="@id/home_screen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/car_service_overview"
+        android:name="com.example.listapitest.CarServiceOverview"
+        android:label="Car rentals overview"
+        tools:layout="@layout/car_service_overview">
+
+        <action
+            android:id="@+id/car_service_overview_to_home_screen"
+            app:destination="@id/home_screen" />
+
+        <action
+            android:id="@+id/car_service_overview_to_add_car"
+            app:destination="@id/car_add" />
+        <action
+            android:id="@+id/action_car_service_overview_to_home_screen"
+            app:destination="@id/home_screen" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/car_add"
+        android:name="com.example.listapitest.CarAdd"
+        android:label="Add a car"
+        tools:layout="@layout/car_add">
+
+        <action
+            android:id="@+id/car_add_to_car_service_overview"
+            app:destination="@id/car_service_overview" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
@@ -56,7 +65,7 @@
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" >
         <action
-            android:id="@+id/action_mapsFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_mapsFragment_to_home_screen"
+            app:destination="@id/home_screen" />
     </fragment>
 </navigation>

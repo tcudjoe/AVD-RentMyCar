@@ -1,16 +1,22 @@
 package com.example.listapitest
 
 import io.reactivex.Observable
+import okhttp3.ResponseBody
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
+
 interface RentMyCarApiClient {
-    @GET("cars") fun getCars(): Observable<ArrayList<Car>>
+    @GET("cars")
+    fun getCars(@Query("maxKilometers") kilometers:String, @Query("maxCost") cost:String): Observable<ArrayList<Car>>
+
+    @POST("cars")
+    fun addCar(@Body car: Car): Observable<Car>
 
     companion object {
-
         fun create(): RentMyCarApiClient {
 
             val retrofit = Retrofit.Builder()
