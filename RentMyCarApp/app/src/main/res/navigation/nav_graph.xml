@@ -41,6 +41,10 @@
         <action
             android:id="@+id/car_service_overview_to_add_car"
             app:destination="@id/car_add" />
+
+        <action
+            android:id="@+id/car_service_overview_to_take_photo"
+            app:destination="@id/take_photo" />
     </fragment>
 
     <fragment
@@ -52,5 +56,13 @@
         <action
             android:id="@+id/car_add_to_car_service_overview"
             app:destination="@id/car_service_overview" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/take_photo"
+        android:name="com.example.listapitest.TakePhoto"
+        android:label="Take a photo"
+        tools:layout="@layout/take_photo">
+
     </fragment>
 </navigation>
