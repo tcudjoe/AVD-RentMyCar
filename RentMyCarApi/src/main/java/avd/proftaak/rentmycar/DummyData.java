@@ -21,9 +21,16 @@ public class DummyData {
     @Bean
     CommandLineRunner initDatabase(CarRepository carRepository, UserRepository userRepository, OrderRepository orderRepository) {
         return args -> {
-            Car car1 = new Car("330i", "BMW", 2012, 220000, 1499.00, CarCategories.ICE, "somewhere", 9859.99);
-            Car car2 = new Car("XC60", "VOLVO", 2019, 95034, 1799.00, CarCategories.BEV, "somewhere", 59999.00);
-            Car car3 = new Car("GTI", "VOLKSWAGEN", 2020, 55908, 1299.00, CarCategories.FCEV, "somewhere", 20);
+            Car car1 = new Car("330i", "BMW", 2012, 220000, 1499.00, CarCategories.ICE, "-37.3544, 153.3271", 9859.99);
+            Car car2 = new Car("XC60", "VOLVO", 2019, 95034, 1799.00, CarCategories.BEV, "72.0332, 9.0101", 59999.00);
+            Car car3 = new Car("GTI", "VOLKSWAGEN", 2020, 55908, 1299.00, CarCategories.FCEV, "25.8199, 113.3003", 20956.00);
+            Car car4 = new Car("CLA200", "MERCEDES", 2021, 64987, 1299.00, CarCategories.BEV, "38.0694, -143.0197", 46665.00);
+            Car car5 = new Car("203GT", "PEUGOT", 2020, 37846, 1099.00, CarCategories.FCEV, "25.8199, 113.3003", 25956.00);
+            Car car6 = new Car("EQC", "MERCEDES", 2020, 55908, 1299.00, CarCategories.FCEV, "somewhere", 20956.00);
+            Car car7 = new Car("GTI", "VOLKSWAGEN", 2020, 55908, 1299.00, CarCategories.FCEV, "somewhere", 20956.00);
+            Car car8 = new Car("GTI", "VOLKSWAGEN", 2020, 55908, 1299.00, CarCategories.FCEV, "somewhere", 20956.00);
+            Car car9 = new Car("GTI", "VOLKSWAGEN", 2020, 55908, 1299.00, CarCategories.FCEV, "somewhere", 20956.00);
+            Car car10 = new Car("GTI", "VOLKSWAGEN", 2020, 55908, 1299.00, CarCategories.FCEV, "somewhere", 20956.00);
 
             log.info("Preloading... " + carRepository.save(car1));
             log.info("Preloading... " + carRepository.save(car2));
