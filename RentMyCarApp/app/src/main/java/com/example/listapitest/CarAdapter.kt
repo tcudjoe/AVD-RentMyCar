@@ -50,8 +50,6 @@ class CarAdapter(val context: Context) :  RecyclerView.Adapter<CarAdapter.CarVie
             },{ error ->
                 Toast.makeText(context, "Refresh error: ${error.message}", Toast.LENGTH_LONG).show()
                 Log.e("ERRORS", error.message.toString())
-                Log.e("ERRORS2", error.toString())
-
             })
     }
 }

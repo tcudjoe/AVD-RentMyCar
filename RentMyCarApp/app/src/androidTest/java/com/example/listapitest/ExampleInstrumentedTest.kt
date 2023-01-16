@@ -27,20 +27,8 @@ import org.junit.Rule
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
-    @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.listapitest", appContext.packageName)
-    }
-
     @get : Rule
     var mainActivity = ActivityScenarioRule(MainActivity::class.java)
-
-    @Before
-    fun setUp() {
-        //initial setup code
-    }
 
     @Test
     //This test checks if the button to the car service overview works
@@ -59,6 +47,21 @@ class ExampleInstrumentedTest {
     fun clickAddCarButton(){
         onView(withId(R.id.button_service)).perform(click())
         onView(withId(R.id.button_add_car)).perform(click())
+    }
+
+    @Test
+    //This test checks if the button to go to the image capture page works
+    fun clickTakePhotoButton(){
+        onView(withId(R.id.button_service)).perform(click())
+        onView(withId(R.id.button_take_photo)).perform(click())
+    }
+
+    @Test
+    //This test checks if the button to take the photo works
+    fun clickImageCaptureButton(){
+        onView(withId(R.id.button_service)).perform(click())
+        onView(withId(R.id.button_take_photo)).perform(click())
+        onView(withId(R.id.image_capture_button)).perform(click())
     }
 
     @Test
@@ -99,29 +102,5 @@ class ExampleInstrumentedTest {
         onView(withId(R.id.button_customer)).perform(click());
         onView(withId(R.id.max_kilometers_input)).perform(typeText("50000")).check(matches(withText("50000")));
         onView(withId(R.id.max_cost_input)).perform(typeText("20000")).check(matches(withText("20000")));
-    }
-
-    //    @Test
-//    fun tes(){
-//
-//    }
-
-    //    @Test
-//    fun tes(){
-//
-//    }
-
-    //    @Test
-//    fun tes(){
-//
-//    }
-
-    //    @Test
-//    fun tes(){
-//
-//    }
-    @After
-    fun tearDown() {
-        //clean up code
     }
 }
