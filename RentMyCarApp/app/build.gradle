@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace 'com.example.listapitest'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.listapitest"
         minSdk 29
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -62,16 +62,8 @@ dependencies {
     implementation "androidx.camera:camera-lifecycle:${camerax_version}"
     implementation "androidx.camera:camera-extensions:${camerax_version}"
     implementation 'androidx.test.espresso:espresso-idling-resource:3.5.1'
-
     testImplementation 'junit:junit:4.13.2'
-    testImplementation "androidx.test:core:1.5.0"
-    testImplementation "io.mockk:mockk-agent:1.13.3"
-    testImplementation "io.mockk:mockk-android:1.13.3"
-    testImplementation "org.mockito:mockito-core:5.0.0"
-    testImplementation "org.mockito.kotlin:mockito-kotlin:4.1.0"
-
     androidTestImplementation 'org.hamcrest:hamcrest:2.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
