@@ -77,7 +77,7 @@ class ExampleInstrumentedTest {
     }
 
     @Test
-    //This test checks if the information is will be added to the car service overview
+    //This test checks if the information will be added to the car service overview
     fun addCar(){
         onView(withId(R.id.button_service)).perform(click());
         onView(withId(R.id.button_add_car)).perform(click());
