@@ -12,6 +12,7 @@ data class Car(
     val weight: Double,
     val category: String,
     val latlng: LatLng,
+    val location: LatLng,
     val cost: Double): ClusterItem {
     /**
      * The position of this marker. This must always return the same value.

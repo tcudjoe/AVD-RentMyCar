@@ -43,7 +43,8 @@ class CarAdd : Fragment() {
                 input_kilometers.text.toString().toIntOrNull()?: 150000,
                 input_weight.text.toString().toDoubleOrNull() ?: 1000.0,
                 input_category.text.toString(),
-                input_location.to,
+                input_location.toString().toDoubleOrNull()?: 100.000000,
+                input_location.toString(),
                 input_cost.text.toString().toDoubleOrNull() ?: 200.00)
 
             client.addCar(car)

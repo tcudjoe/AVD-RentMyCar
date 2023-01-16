@@ -32,7 +32,6 @@ public class Car {
     private double longitude;
     private double latitude;
     private double cost;
-    private String latlng;
 
     @OneToMany
     Set<Order> orders;
@@ -42,7 +41,7 @@ public class Car {
     private RentalService rentalService;
 
     //car constructor
-    public Car(String brand, String model, int yearOfBuild, Integer kilometers, int numberOfDoors, double weight, CarCategories category, int numberOfSeats, double longitude, double latitude, double cost, String latlng) {
+    public Car(String brand, String model, int yearOfBuild, Integer kilometers, int numberOfDoors, double weight, CarCategories category, int numberOfSeats, double longitude, double latitude, double cost) {
         this.brand = brand;
         this.model = model;
         this.yearOfBuild = yearOfBuild;
@@ -53,6 +52,5 @@ public class Car {
         this.longitude = longitude;
         this.latitude = latitude;
         this.cost = cost;
-        this.latlng = latlng;
     }
 }
