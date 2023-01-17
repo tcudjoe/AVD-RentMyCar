@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ListApiTest</string>
+    <string name="action_settings">Instellingen</string>
+    <string name="next">Volgende</string>
+    <string name="previous">Terug</string>
+    <string name="refresh">Herladen</string>
+    <string name="buttonhuurder">Huurder</string>
+    <string name="verhuurder_button">Verhuurder</string>
+    <string name="app_logo">app lgo</string>
+    <string name="verhuurder_back">Terug</string>
+    <string name="max_cost">Maximaal bedrag</string>
+    <string name="max_kilometers">Maximaal aantal kilometers</string>
+    <string name="i_am_a_rental_service">Ik ben een verhuurder</string>
+    <string name="i_am_a_customer">Ik wil huren</string>
+    <string name="add_car">Auto toevoegen</string>
+    <string name="homescreen">Home</string>
+</resources>

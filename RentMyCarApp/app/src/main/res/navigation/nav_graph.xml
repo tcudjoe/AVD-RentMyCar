@@ -44,9 +44,16 @@
         <action
             android:id="@+id/car_service_overview_to_add_car"
             app:destination="@id/car_add" />
+<<<<<<< HEAD
         <action
             android:id="@+id/action_car_service_overview_to_home_screen"
             app:destination="@id/home_screen" />
+=======
+
+        <action
+            android:id="@+id/car_service_overview_to_take_photo"
+            app:destination="@id/take_photo" />
+>>>>>>> 27f4a63c52770048674e89d3268ab26d57c1e14c
     </fragment>
 
     <fragment
@@ -59,6 +66,7 @@
             android:id="@+id/car_add_to_car_service_overview"
             app:destination="@id/car_service_overview" />
     </fragment>
+<<<<<<< HEAD
     <fragment
         android:id="@+id/mapsFragment"
         android:name="com.example.listapitest.MapsFragment"
@@ -67,5 +75,14 @@
         <action
             android:id="@+id/action_mapsFragment_to_home_screen"
             app:destination="@id/home_screen" />
+=======
+
+    <fragment
+        android:id="@+id/take_photo"
+        android:name="com.example.listapitest.TakePhoto"
+        android:label="Take a photo"
+        tools:layout="@layout/take_photo">
+
+>>>>>>> 27f4a63c52770048674e89d3268ab26d57c1e14c
     </fragment>
 </navigation>

@@ -16,6 +16,13 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
+            android:id="@+id/button_take_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Take photo" />
+
+        <Button
             android:id="@+id/button_add_car"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
