@@ -14,7 +14,6 @@ import com.example.listapitest.databinding.CarServiceOverviewBinding
 import kotlinx.android.synthetic.main.car_service_overview.*
 
 class CarServiceOverview : Fragment() {
-
     private var _binding: CarServiceOverviewBinding? = null
     lateinit var adapter:CarAdapter
     private var baseContext:Context? = null
