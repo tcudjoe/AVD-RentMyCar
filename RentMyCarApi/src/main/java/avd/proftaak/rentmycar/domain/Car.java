@@ -22,6 +22,7 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "carId", nullable = false)
     private Long carId;
+    private static volatile Car car;
     private String brand;
     private String model;
     private int yearOfBuild;
@@ -37,7 +38,7 @@ public class Car {
     //@JoinColumn(name = "rentalserviceId", nullable = false)
     private RentalService rentalService;
 
-    public Car(String brand, String model, int yearOfBuild, Integer kilometers, double weight, CarCategories category, String location, double cost) {
+    private Car(String brand, String model, int yearOfBuild, Integer kilometers, double weight, CarCategories category, String location, double cost) {
         this.brand = brand;
         this.model = model;
         this.yearOfBuild = yearOfBuild;
@@ -46,5 +47,15 @@ public class Car {
         this.category = category;
         this.location = location;
         this.cost = cost;
+    }
+
+    public static Car getInstance(String brand, String model, int yearOfBuild, Integer kilometers, Double weight, CarCategories category, String location, double cost){
+        if (car == null){
+            synchronized (Car.class){
+                System.out.println("Creating an object: ");
+                car = new Car(brand, model, yearOfBuild, kilometers, weight, category, location, cost);
+            }
+        }
+        return car;
     }
 }
