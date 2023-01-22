@@ -22,11 +22,11 @@ public class DummyData {
     CommandLineRunner initDatabase(CarRepository carRepository, UserRepository userRepository, OrderRepository orderRepository) {
         return args -> {
 
-            Car car1 = Car.getInstance("330i", "BMW", 2012, 220000, 1499.00, CarCategories.ICE, "somewhere", 9859.99);
+            Car cars = Car.getInstance("330i", "BMW", 2012, 220000, 1499.00, CarCategories.ICE, "somewhere", 9859.99);
             Car car2 = Car.getInstance("XC60", "VOLVO", 2019, 95034, 1799.00, CarCategories.BEV, "somewhere", 59999.00);
             Car car3 = Car.getInstance("GTI", "VOLKSWAGEN", 2020, 55908, 1299.00, CarCategories.FCEV, "somewhere", 20);
 
-            log.info("Preloading... " + carRepository.save(car1));
+            log.info("Preloading... " + carRepository.save(cars));
             log.info("Preloading... " + carRepository.save(car2));
             log.info("Preloading... " + carRepository.save(car3));
 
@@ -46,7 +46,7 @@ public class DummyData {
             log.info("Preloading... " + userRepository.save(rentalService2));
             log.info("Preloading... " + userRepository.save(rentalService3));
 
-            Order order1 = new Order(car1, customer1, rentalService1, "test 1", LocalDateTime.of(2022, Month.OCTOBER,24, 13, 00, 00), LocalDateTime.of(2022, Month.OCTOBER, 25, 12, 00, 00));
+            Order order1 = new Order(cars, customer1, rentalService1, "test 1", LocalDateTime.of(2022, Month.OCTOBER,24, 13, 00, 00), LocalDateTime.of(2022, Month.OCTOBER, 25, 12, 00, 00));
             Order order2 = new Order(car2, customer2, rentalService2,"test 2", LocalDateTime.of(2022, Month.OCTOBER,24, 13, 00, 00), LocalDateTime.of(2022, Month.OCTOBER, 26, 12, 00, 00));
             Order order3 = new Order(car3, customer3, rentalService3,"test 3", LocalDateTime.of(2022, Month.OCTOBER,24, 13, 00, 00), LocalDateTime.of(2022, Month.OCTOBER, 27, 12, 00, 00));
 

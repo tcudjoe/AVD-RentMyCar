@@ -51,7 +51,6 @@ public class CarController {
     //Gets a car by its id
     @GetMapping("/{carId}")
     public Optional<Car> getById(@PathVariable Long carId){
-        System.out.println(carRepository);
         return carRepository.findById(carId);
     }
 

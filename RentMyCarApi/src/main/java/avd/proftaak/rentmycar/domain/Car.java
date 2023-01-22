@@ -52,10 +52,16 @@ public class Car {
     public static Car getInstance(String brand, String model, int yearOfBuild, Integer kilometers, Double weight, CarCategories category, String location, double cost){
         if (car == null){
             synchronized (Car.class){
-                System.out.println("Creating an object: ");
-                car = new Car(brand, model, yearOfBuild, kilometers, weight, category, location, cost);
+                if (car == null){
+                    System.out.println("Creating an object: ");
+                    car = new Car(brand, model, yearOfBuild, kilometers, weight, category, location, cost);
+                }
             }
         }
         return car;
+    }
+
+    public String getInfo(){
+        return brand + ", " + model + ", " + yearOfBuild + ", " + kilometers + ", " + weight + ", " + category + ", " + location + ", " + cost;
     }
 }
