@@ -24,8 +24,8 @@
         tools:layout="@layout/car_rentals_overview">
 
         <action
-            android:id="@+id/car_rentals_overview_to_home_screen"
-            app:destination="@id/home_screen" />
+            android:id="@+id/car_rentals_overview_to_car_map"
+            app:destination="@id/car_map" />
     </fragment>
 
     <fragment
@@ -33,10 +33,6 @@
         android:name="com.example.listapitest.CarServiceOverview"
         android:label="Car rentals overview"
         tools:layout="@layout/car_service_overview">
-
-        <action
-            android:id="@+id/car_service_overview_to_home_screen"
-            app:destination="@id/home_screen" />
 
         <action
             android:id="@+id/car_service_overview_to_add_car"
@@ -63,6 +59,12 @@
         android:name="com.example.listapitest.TakePhoto"
         android:label="Take a photo"
         tools:layout="@layout/take_photo">
+    </fragment>
 
+    <fragment
+        android:id="@+id/car_map"
+        android:name="com.example.listapitest.CarMap"
+        android:label="Car map"
+        tools:layout="@layout/car_map">
     </fragment>
 </navigation>
