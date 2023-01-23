@@ -40,6 +40,8 @@ public abstract class User {
         this.phonenumber = phonenumber;
     }
 
+    public abstract User clone();
+
     public String Name()
     {
         return String.join(",", this.firstname, this.lastname);

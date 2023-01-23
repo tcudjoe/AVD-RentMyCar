@@ -21,6 +21,13 @@ public class RentalService extends User{
         super(firstname, lastname, email, password, phonenumber);
     }
 
+    public RentalService(RentalService rentalService) {
+    }
+
+    public RentalService clone(){
+        return new RentalService(this);
+    }
+
     @OneToMany(mappedBy = "costId")
     private Set<Cost> costs;
 
