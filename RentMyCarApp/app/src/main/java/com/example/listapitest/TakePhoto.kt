@@ -92,9 +92,7 @@ class TakePhoto : Fragment() {
     private fun captureVideo() {
         val videoCapture = this.videoCapture ?: return
 
-        viewBinding.videoCaptureButton.isEnabled = false
-
-        //viewBinding.start_capture.isEnabled = false
+        binding.videoCaptureButton.isEnabled = false
 
         val curRecording = recording
         if (curRecording != null) {
@@ -105,8 +103,9 @@ class TakePhoto : Fragment() {
         }
 
         // create and start a new recording session
-        val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
+        val name = SimpleDateFormat(FILENAME_FORMAT, Locale.getDefault())
             .format(System.currentTimeMillis())
+
         val contentValues = ContentValues().apply {
             put(MediaStore.MediaColumns.DISPLAY_NAME, name)
             put(MediaStore.MediaColumns.MIME_TYPE, "video/mp4")
@@ -116,52 +115,45 @@ class TakePhoto : Fragment() {
         }
 
         val mediaStoreOutputOptions = MediaStoreOutputOptions
-            .Builder(baseContext.contentResolver, MediaStore.Video.Media.EXTERNAL_CONTENT_URI)
+            .Builder(requireActivity().contentResolver, MediaStore.Video.Media.EXTERNAL_CONTENT_URI)
             .setContentValues(contentValues)
             .build()
+
         recording = videoCapture.output
-            .prepareRecording(baseContext, mediaStoreOutputOptions)
+            .prepareRecording(requireContext(), mediaStoreOutputOptions)
             .apply {
-                if (PermissionChecker.checkSelfPermission(baseContext,
-                        Manifest.permission.RECORD_AUDIO) ==
-                    PermissionChecker.PERMISSION_GRANTED)
-                {
+                if (PermissionChecker.checkSelfPermission(requireContext(), Manifest.permission.RECORD_AUDIO) == PermissionChecker.PERMISSION_GRANTED) {
                     withAudioEnabled()
                 }
-            }
-
-            .start(ContextCompat.getMainExecutor(baseContext)) { recordEvent ->
+            }.start(ContextCompat.getMainExecutor(requireContext())) { recordEvent ->
                 when(recordEvent) {
                     is VideoRecordEvent.Start -> {
-                        viewBinding.videoCaptureButton.apply {
-                            text = "stop_capture"
+                        binding.videoCaptureButton.apply {
+                            text = "stop capture"
                             isEnabled = true
                         }
                     }
                     is VideoRecordEvent.Finalize -> {
                         if (!recordEvent.hasError()) {
-                            val msg = "Video capture succeeded: " +
-                                    "${recordEvent.outputResults.outputUri}"
-                            Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT)
+                            val msg = "Video capture succeeded: "
+//                                    "${recordEvent.outputResults.outputUri}"
+                            Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT)
                                 .show()
                             Log.d(TAG, msg)
                         } else {
                             recording?.close()
                             recording = null
-                            Log.e(TAG, "Video capture ends with error: " +
-                                    "${recordEvent.error}")
+                            Log.e(TAG, "Video capture ends with error: ")
+//                                    "${recordEvent.error}")
                         }
-                        viewBinding.videoCaptureButton.apply {
-                            text = "start_capture"
+                        binding.videoCaptureButton.apply {
+                            text = "start capture"
                             isEnabled = true
                         }
                     }
-                    else -> {}
                 }
             }
     }
-
-
 
     private fun takePhoto() {// Get a stable reference of the modifiable image capture use case
         val imageCapture = imageCapture ?: return
@@ -204,7 +196,8 @@ class TakePhoto : Fragment() {
         )
     }
 
-    private fun startCamera() {val cameraProviderFuture = ProcessCameraProvider.getInstance(baseContext)
+    private fun startCamera() {
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(baseContext)
         cameraProviderFuture.addListener({
             // Used to bind the lifecycle of cameras to the lifecycle owner
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
@@ -216,6 +209,13 @@ class TakePhoto : Fragment() {
                     it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
                 }
 
+            val recorder = Recorder.Builder()
+                .setQualitySelector(QualitySelector.from(Quality.HIGHEST,
+                    FallbackStrategy.higherQualityOrLowerThan(Quality.SD)))
+                .build()
+            videoCapture = VideoCapture.withOutput(recorder)
+            imageCapture = ImageCapture.Builder().build()
+
             // Select back camera as a default
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
@@ -225,7 +225,7 @@ class TakePhoto : Fragment() {
 
                 // Bind use cases to camera
                 cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview, imageCapture)
+                    this, cameraSelector, preview, imageCapture, videoCapture)
 
             } catch(exc: Exception) {
                 Log.e(TAG, "Use case binding failed", exc)
@@ -233,12 +233,11 @@ class TakePhoto : Fragment() {
 
         }, ContextCompat.getMainExecutor(baseContext))
 
-        imageCapture = ImageCapture.Builder().build()
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(
-            baseContext, it) == PackageManager.PERMISSION_GRANTED
+            requireContext(), it) == PackageManager.PERMISSION_GRANTED
     }
 
     override fun onDestroy() {
@@ -254,7 +253,7 @@ class TakePhoto : Fragment() {
             if (allPermissionsGranted()) {
                 startCamera()
             } else {
-                Toast.makeText(baseContext,
+                Toast.makeText(requireContext(),
                     "Permissions not granted by the user.",
                     Toast.LENGTH_SHORT).show()
                 cameraExecutor.shutdown()
