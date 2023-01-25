@@ -60,7 +60,7 @@ public class DummyData {
             log.info("Preloading... " + userRepository.save(rentalService2));
             log.info("Preloading... " + userRepository.save(rentalService3));
 
-            Order order1 = new Order(cars, customer1, rentalService1, "test 1", LocalDateTime.of(2022, Month.OCTOBER,24, 13, 00, 00), LocalDateTime.of(2022, Month.OCTOBER, 25, 12, 00, 00));
+            Order order1 = new Order(car1, customer1, rentalService1, "test 1", LocalDateTime.of(2022, Month.OCTOBER,24, 13, 00, 00), LocalDateTime.of(2022, Month.OCTOBER, 25, 12, 00, 00));
             Order order2 = new Order(car2, customer2, rentalService2,"test 2", LocalDateTime.of(2022, Month.OCTOBER,24, 13, 00, 00), LocalDateTime.of(2022, Month.OCTOBER, 26, 12, 00, 00));
             Order order3 = new Order(car3, customer3, rentalService3,"test 3", LocalDateTime.of(2022, Month.OCTOBER,24, 13, 00, 00), LocalDateTime.of(2022, Month.OCTOBER, 27, 12, 00, 00));
 
