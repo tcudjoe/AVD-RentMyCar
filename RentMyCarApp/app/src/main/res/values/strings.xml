@@ -5,8 +5,8 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="refresh">Refresh</string>
-    <string name="buttonhuurder">Huurder</string>
-    <string name="verhuurder_button">Verhuurder</string>
+    <string name="buttonhuurder">Customer</string>
+    <string name="verhuurder_button">Rental service</string>
     <string name="app_logo">app logo</string>
     <string name="verhuurder_back">back</string>
     <string name="max_cost">max cost</string>
@@ -15,4 +15,5 @@
     <string name="i_am_a_customer">I am a customer</string>
     <string name="add_car">add car</string>
     <string name="homescreen">homescreen</string>
+    <string name="map_desc">map description</string>
 </resources>

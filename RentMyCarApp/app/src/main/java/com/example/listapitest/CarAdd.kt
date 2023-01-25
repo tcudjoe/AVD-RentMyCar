@@ -37,7 +37,7 @@ class CarAdd : Fragment() {
         adapter = CarAdapter(view.context)
 
         binding.addCar.setOnClickListener {
-            var car = Car(
+            val car = Car(
                 input_brand.text.toString(),
                 input_model.text.toString(),
                 input_year_of_build.text.toString().toIntOrNull()?: 1990,
