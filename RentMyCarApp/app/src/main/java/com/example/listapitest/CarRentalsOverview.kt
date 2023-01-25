@@ -1,6 +1,5 @@
 package com.example.listapitest
 
-import android.R.attr.password
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -11,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.listapitest.databinding.CarRentalsOverviewBinding
 import kotlinx.android.synthetic.main.car_rentals_overview.*
@@ -52,6 +52,9 @@ class CarRentalsOverview : Fragment() {
         car_item_list.layoutManager = LinearLayoutManager(view.context)
         car_item_list.adapter = adapter
 
+        binding.buttonCarMap.setOnClickListener {
+            findNavController().navigate(R.id.car_rentals_overview_to_car_map)
+        }
         binding.maxCostInput.addTextChangedListener {
             getCars()
         }

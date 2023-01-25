@@ -6,6 +6,13 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <permission
+        android:name="com.example.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature"/>
+    <uses-permission android:name="com.example.permission.MAPS_RECEIVE"/>
+
 
     <application
         android:allowBackup="true"
@@ -33,6 +40,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBY4iwlbizaiLC8dJwcQ34RLIZnOZwUwc8"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
